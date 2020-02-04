@@ -1,6 +1,5 @@
-Repository for the IA optim UE
+Repository for the course "Optimizing Artificial Intelligence" at IMT Atlantique
 --
-This repo contains info about the Optimizing Artificial Intelligence. 
 
 
 Course organisation / Syllabus
