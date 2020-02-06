@@ -72,6 +72,19 @@ Amazon Book - [Dive into Deep learning](https://d2l.ai/)
 
 [Tutorial presentation on Efficient Deep Learning from NeurIPS'19](http://eyeriss.mit.edu/2019_neurips_tutorial.pdf)
 
+
+Training Deep Networks
+--
+
+Here are some academic papers discussing learning rate strategies : 
+
+- [Cyclic learning rates](https://arxiv.org/abs/1506.01186)
+- [Demystifying Learning Rate Policies for High Accuracy Training of Deep Neural Networks](https://arxiv.org/abs/1908.06477)
+- [A Closer Look at Deep Learning Heuristics: Learning rate restarts, Warmup and Distillation](https://arxiv.org/abs/1810.13243)
+
+Main strategies are [readily available in pytorch.](https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate)
+
+
 Quantization
 --
 
