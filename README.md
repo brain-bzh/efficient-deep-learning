@@ -14,8 +14,8 @@ Here is a detailed schedule, session by session:
 2. Quantification
    1. **Short evaluation** on Deep Learning Essentials
    2. **Student's presentation** of short project - exploring hyper parameters on a fixed architecture
-   3. Course - Quantifying Deep neural networks
-   4. Practical session - quantification on a small convolutional network 
+   3. [Course](cours2.pdf) - Quantifying Deep neural networks
+   4. [Practical session](lab2.md) - quantification on a small convolutional network 
    5. Long project 1 - MicroNet Challenge
 3. Pruning
    1. **Short evaluation** on Quantification
