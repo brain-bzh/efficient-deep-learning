@@ -79,6 +79,16 @@ Here are some academic papers discussing learning rate strategies :
 
 Main strategies are [readily available in pytorch.](https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate)
 
+Pytorch
+--
+
+Start page to access the full [python API](https://pytorch.org/docs/stable/torch.html) of pytorch, to check all existing functions.
+
+[A useful tutorial on Saving and Loading models](https://pytorch.org/tutorials/beginner/saving_loading_models.html).
+
+[Pytorch Cheat Sheet](https://pytorch.org/tutorials/beginner/ptcheat.html).
+
+
 
 Quantization
 --
@@ -126,5 +136,5 @@ Companies / private sector
 
 [13 highest funded startups for hardware for DL](https://www.crunchbase.com/lists/relevant-ai-chip-startups/922b3cf5-b19d-4c28-9978-4e66ccb52337/organization.companies)
 
-[more complete list of companies working on hardware DL](https://roboticsandautomationnews.com/2019/05/24/top-25-ai-chip-companies-a-macro-step-change-on-the-micro-scale/22704/)
+[More complete list of companies working on hardware DL](https://roboticsandautomationnews.com/2019/05/24/top-25-ai-chip-companies-a-macro-step-change-on-the-micro-scale/22704/)
 
