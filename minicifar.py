@@ -88,13 +88,13 @@ def generate_subset(dataset,n_classes,reducefactor,n_ex_class_init):
 
 ### These dataloader are ready to be used to train for scratch 
 minicifar_train= generate_subset(dataset=c10train,n_classes=n_classes_minicifar,reducefactor=R,n_ex_class_init=5000)
-minicifar_val= generate_subset(dataset=c10test,n_classes=n_classes_minicifar,reducefactor=1,n_ex_class_init=1000) 
+minicifar_val= generate_subset(dataset=c10test,n_classes=n_classes_minicifar,reducefactor=R,n_ex_class_init=1000) 
 minicifar_test= generate_subset(dataset=c10test,n_classes=n_classes_minicifar,reducefactor=1,n_ex_class_init=1000) 
 
 
 ### These dataloader are ready to be used to train using Transfer Learning 
 ### from a backbone pretrained on ImageNet
 minicifar_train_im= generate_subset(dataset=c10train_imagenet,n_classes=n_classes_minicifar,reducefactor=R,n_ex_class_init=5000)
-minicifar_val_im= generate_subset(dataset=c10test_imagenet,n_classes=n_classes_minicifar,reducefactor=1,n_ex_class_init=1000)
+minicifar_val_im= generate_subset(dataset=c10test_imagenet,n_classes=n_classes_minicifar,reducefactor=R,n_ex_class_init=1000)
 minicifar_test_im= generate_subset(dataset=c10test_imagenet,n_classes=n_classes_minicifar,reducefactor=1,n_ex_class_init=1000)
 
