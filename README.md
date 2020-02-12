@@ -58,10 +58,9 @@ In addition, there are **students' presentations**, at sessions 2, 4, 6 and 8.
 
 MicroNet Challenge and final presentations
 --
-Please follow the [MicroNet Rules](https://micronet-challenge.github.io/) in order to evaluate your proposal. 
-
 For the final session, we ask you to prepare a 20 minutes presentation, that will be followed by 10 Minutes of question. 
 
+You'll find in the micronet-ressources folder, presentations from the winners of the 2019, and rules for the 2020 challenge. 
 
 General References
 --
@@ -87,6 +86,14 @@ Main strategies are [readily available in pytorch.](https://pytorch.org/docs/sta
 
 Quantization
 --
+[Binary Connect](http://papers.nips.cc/paper/5647-binaryconnect-training-deep-neural-networks-with-b)
+
+[XnorNet](https://link.springer.com/chapter/10.1007/978-3-319-46493-0_32)
+
+[BNN+](https://openreview.net/forum?id=SJfHg2A5tQ)
+
+[Whitepaper of quantization](https://arxiv.org/abs/1806.08342)
+
 
 Pruning
 --
