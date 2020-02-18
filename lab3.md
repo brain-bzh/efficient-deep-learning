@@ -26,3 +26,4 @@ The key question we are interested in :
 
 Prepare a presentation for session 4, detailing your methodology and explorations to adress this question. You will have 10 minutes to present, followed by 5 minutes of questions. Good luck ! 
 
+This work is part of your work for the MicroNet challenge, as long as you apply it on CIFAR100. 
