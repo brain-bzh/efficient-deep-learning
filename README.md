@@ -19,8 +19,8 @@ Here is a detailed schedule, session by session:
    5. Long project 1 - MicroNet Challenge
 3. Pruning
    1. **Short evaluation** on Quantification
-   2. Course - Pruning Deep neural networks
-   3. Practical session - pruning on a small convolutional network 
+   2. [Course](cours3.pdf) - Pruning Deep neural networks
+   3. [Practical session](lab3.md) - pruning on a small convolutional network.
    4. Long project 2 - MicroNet Challenge
 4. Factorization
    1. **Short evaluation** on Pruning
@@ -103,6 +103,14 @@ Quantization
 
 Pruning
 --
+[Pruning Filters for Efficient ConvNets](https://arxiv.org/abs/1608.08710)
+
+[ThiNet](https://arxiv.org/abs/1707.06342)
+
+
+[AutoML for Model Compression (AMC)](https://arxiv.org/abs/1802.03494)
+
+[Pruning Channel with Attention Statistics (PCAS)](https://arxiv.org/abs/1806.05382)
 
 
 Factorization
