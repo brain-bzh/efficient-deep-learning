@@ -24,7 +24,7 @@ Here is a detailed schedule, session by session:
    4. Long project 2 - MicroNet Challenge
 4. Factorization
    1. **Short evaluation** on Pruning
-   2. **Student's presentation** on current work on memory footprint / MicroNet
+   2. **Student's presentation** on current work on MicroNet
    3. Course - Factorizing Deep neural networks
    4. Practical session - factorizing a small convolutional network
    5. Long Project 3 - MicroNet Challenge
@@ -35,7 +35,7 @@ Here is a detailed schedule, session by session:
    4. Long Project 4 - MicroNet Challenge 
 6. Operators and Architectures
    1. **Short evaluation** on Distillation
-   2. **Student's presentation** on current work on computations / MicroNet
+   2. **Student's presentation** on current work on MicroNet
    3. Course - Alternative operators and efficient architectures
    4. Practical session - defining and training alternative operators
    5. Long Project 5 - MicroNet Challenge
@@ -112,6 +112,7 @@ Pruning
 
 [Pruning Channel with Attention Statistics (PCAS)](https://arxiv.org/abs/1806.05382)
 
+[BitPruning: Learning Bitlengths for Aggressive and Accurate Quantization](https://arxiv.org/abs/2002.03090)
 
 Factorization
 -- 
