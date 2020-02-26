@@ -25,7 +25,7 @@ Here is a detailed schedule, session by session:
 4. Factorization
    1. **Short evaluation** on Pruning
    2. **Student's presentation** on current work on MicroNet
-   3. Course - Factorizing Deep neural networks
+   3. [Course](cours4.pdf) - Factorizing Deep neural networks
    4. Practical session - factorizing a small convolutional network
    5. Long Project 3 - MicroNet Challenge
 5. Factorisation - Part 2 - Operators and Architectures
