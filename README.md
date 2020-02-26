@@ -28,17 +28,15 @@ Here is a detailed schedule, session by session:
    3. Course - Factorizing Deep neural networks
    4. Practical session - factorizing a small convolutional network
    5. Long Project 3 - MicroNet Challenge
-5. Distillation
+5. Factorisation - Part 2 - Operators and Architectures
+   1. **Short evaluation** on Factorization and previous courses
+   2. Course - Factorization Pt2, alternative operators and efficient architectures
+   3. Long Project 5 - MicroNet Challenge
+6. Distillation
    1. **Short evaluation** on Factorization
    2. Course - Distillation of knowledge and features between neural networks
-   3. Practical session - a simple distillation case 
-   4. Long Project 4 - MicroNet Challenge 
-6. Operators and Architectures
-   1. **Short evaluation** on Distillation
-   2. **Student's presentation** on current work on MicroNet
-   3. Course - Alternative operators and efficient architectures
-   4. Practical session - defining and training alternative operators
-   5. Long Project 5 - MicroNet Challenge
+   3. Long Project 4 - MicroNet Challenge 
+
 7. Embedded Software and Hardware for Deep Learning 
    1. **Short evaluation** on operators and architectures
    2. Course - Embedded Software and Hardware for Deep Learning
