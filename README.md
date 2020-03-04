@@ -88,13 +88,19 @@ Start page to access the full [python API](https://pytorch.org/docs/stable/torch
 
 Data Augmentation
 --
-[A list of papers and code for data augmentation](https://github.com/CrazyVertigo/awesome-data-augmentation)
+Popular methods : 
 
 [Cut Out](https://github.com/uoguelph-mlrg/Cutout)
 
 [Auto Augment](https://github.com/DeepVoltaire/AutoAugment)
 
-[Albumentations](https://github.com/albumentations-team/albumentations)
+Other ressources : 
+
+[A list of papers and code for data augmentation](https://github.com/CrazyVertigo/awesome-data-augmentation)
+
+[IMGAUG](https://imgaug.readthedocs.io/en/latest/index.html) and [Colab Notebook showing how to use IMGAUG with pytorch](https://colab.research.google.com/drive/109vu3F1LTzD1gdVV6cho9fKGx7lzbFll)
+
+A popular python package in Kaggle competitions : [Albumentations](https://github.com/albumentations-team/albumentations)
 
 Quantization
 --
