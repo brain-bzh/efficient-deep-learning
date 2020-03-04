@@ -86,7 +86,15 @@ Start page to access the full [python API](https://pytorch.org/docs/stable/torch
 
 [Pytorch Cheat Sheet](https://pytorch.org/tutorials/beginner/ptcheat.html).
 
+Data Augmentation
+--
+[A list of papers and code for data augmentation](https://github.com/CrazyVertigo/awesome-data-augmentation)
 
+[Cut Out](https://github.com/uoguelph-mlrg/Cutout)
+
+[Auto Augment](https://github.com/DeepVoltaire/AutoAugment)
+
+[Albumentations](https://github.com/albumentations-team/albumentations)
 
 Quantization
 --
