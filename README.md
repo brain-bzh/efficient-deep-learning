@@ -51,9 +51,10 @@ Evaluation in this course
 --
 
 There are **short written evaluations** during the first 10 minutes of **each** session starting from session 2. Don't be late!  
-BNN+For the final session, we ask you to prepare a 20 minutes presentation, that will be followed by 10 Minutes of question. 
 
-You'll find in the micronet-ressources folder, presentations from the winners of the 2019, and rules for the 2020 challenge. 
+**For the final session**, we ask you to prepare a **20 minutes presentation**, that will be followed by 10 Minutes of question. 
+
+You'll find in the [micronet-ressources folder](https://github.com/brain-bzh/ai-optim/tree/master/micronet-ressources), presentations from the winners of the 2019, and rules for the 2020 challenge. 
 
 General References
 --
