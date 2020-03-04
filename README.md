@@ -112,25 +112,33 @@ Pruning
 
 [BitPruning: Learning Bitlengths for Aggressive and Accurate Quantization](https://arxiv.org/abs/2002.03090)
 
-Factorization
+Factorization and operators
 -- 
 
+[Deep Compression](https://arxiv.org/abs/1510.00149)
 
-Operators
---
+[Deep K-means](https://arxiv.org/abs/1806.09228)
 
+[SqueezeNet](https://arxiv.org/abs/1602.07360)
+
+[MobileNet](https://arxiv.org/abs/1704.04861)
+
+[MobileNetV2](https://arxiv.org/abs/1801.04381)
+
+[Shift Attention Layers](https://arxiv.org/abs/1905.12300)
 
 Distillation
 --
-Hinton, Geoffrey, Oriol Vinyals, and Jeff Dean. "Distilling the knowledge in a neural network." arXiv preprint arXiv:1503.02531 (2015).
+[Distilling the knowledge in a neural network](https://arxiv.org/abs/1503.02531)
 
-Romero, Adriana, et al. "Fitnets: Hints for thin deep nets." arXiv preprint arXiv:1412.6550 (2014).
+[Fitnets: Hints for thin deep nets](https://arxiv.org/abs/1412.6550)
 
-Koratana, Animesh, et al. "LIT: Learned Intermediate Representation Training for Model Compression." International Conference on Machine Learning. 2019.
+[LIT: Learned Intermediate Representation Training for Model Compression](http://proceedings.mlr.press/v97/koratana19a.html)
 
-Heo, Byeongho, et al. "A Comprehensive Overhaul of Feature Distillation." arXiv preprint arXiv:1904.01866 (2019).
+[A Comprehensive Overhaul of Feature Distillation](https://arxiv.org/abs/1904.01866)
 
-Stock, Pierre, et al. "And the bit goes down: Revisiting the quantization of neural networks." arXiv preprint arXiv:1907.05686 (2019).
+[And the bit goes down: Revisiting the quantization of neural networks](https://arxiv.org/abs/1907.05686)
+
 
 Embedded Software and Hardware
 --
