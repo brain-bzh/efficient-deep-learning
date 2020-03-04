@@ -30,7 +30,7 @@ Here is a detailed schedule, session by session:
    5. Long Project 3 - MicroNet Challenge
 5. Factorisation - Part 2 - Operators and Architectures
    1. **Short evaluation** on Factorization and previous courses
-   2. Course - Factorization Pt2, alternative operators and efficient architectures
+   2. [Course](cours5.pdf) - Factorization Pt2, alternative operators and efficient architectures
    3. Long Project 5 - MicroNet Challenge
 6. Distillation
    1. **Short evaluation** on Factorization
