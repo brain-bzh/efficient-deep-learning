@@ -33,7 +33,7 @@ Here is a detailed schedule, session by session:
    2. Long Project 5 - MicroNet Challenge
 6. Distillation
    1. **Short evaluation** on Factorization Pt1 and Pt2 and previous courses
-   2. Course - Distillation of knowledge and features between neural networks
+   2. [Course](cours6.pdf) - Distillation of knowledge and features between neural networks
    3. Long Project 4 - MicroNet Challenge 
 
 7. Embedded Software and Hardware for Deep Learning 
