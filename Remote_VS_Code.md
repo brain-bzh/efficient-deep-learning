@@ -22,7 +22,7 @@ VS Code used for this tutorial: 1.43.2
     Host              brain1.imt
         User              m20leona
         Compression       yes
-        HostName          srv-elec-021.priv.enst-bretagne.fr
+        HostName          10.29.232.81
 
     Host *.imt
         ProxyCommand C:\Windows\System32\OpenSSH\ssh.exe m20leona@ssh.telecom-bretagne.eu "/bin/nc `basename %h .imt` %p"
