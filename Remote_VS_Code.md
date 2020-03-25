@@ -27,12 +27,12 @@ VS Code used for this tutorial: 1.43.2
     Host *.imt
         ProxyCommand C:\Windows\System32\OpenSSH\ssh.exe m20leona@ssh.telecom-bretagne.eu "/bin/nc `basename %h .imt` %p"
     ```
-
-4. If you get the following error message : 
+4. Hit F1 key and go to "Remote-SSH: Connect To Host..."
+5. Select "brain1.imt"
+6. If you get the following error message : 
 > Failed to find a non-Windows SSH installed. Password prompts may not be displayed properly! Disable `remote.SSH.useLocalServer` if needed.
 
 It's a known bug. Follow instructions [here](https://github.com/microsoft/vscode-remote-release/issues/2523#issuecomment-597551802) and downgrade Remote - SSH extension to 0.49.0.
 
-5. Enter passwords when prompted
-6. If asked about fingerprints, hit "Continue"
-7. Hit F1 key and go to "Remote-SSH: Connect To Host..."
+7. Enter passwords when prompted
+8. If asked about fingerprints, hit "Continue"
