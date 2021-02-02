@@ -9,6 +9,7 @@
 
 
 n_classes_minicifar = 4
+train_size = 0.8
 R = 5
 
 
@@ -17,6 +18,8 @@ R = 5
 from torchvision.datasets import CIFAR10
 import numpy as np 
 from torch.utils.data import Subset
+from torch.utils.data.sampler import SubsetRandomSampler
+
 
 import torchvision.transforms as transforms
 
@@ -39,13 +42,16 @@ transform_test = transforms.Compose([
     normalize_scratch,
 ])
 
-## No data augmentation when using Transfer Learning
+## No data augmentation when using Transfer Learning 
+## however resize to Imagenet input dimensions is recommended for Transfer learning
 transform_train_imagenet = transforms.Compose([
+    transforms.Resize((256,256)),
     transforms.ToTensor(),
     normalize_forimagenet,
 ])
 
 transform_test_imagenet = transforms.Compose([
+    transforms.Resize((256,256)),
     transforms.ToTensor(),
     normalize_forimagenet,
 ])
@@ -64,6 +70,19 @@ c10test_imagenet = CIFAR10(rootdir,train=False,download=True,transform=transform
 # 
 # CIFAR10 is sufficiently large so that training a model up to the state of the art performance will take approximately 3 hours on the 1060 GPU available on your machine. 
 # As a result, we will create a "MiniCifar" dataset, based on CIFAR10, with less classes and exemples. 
+
+def train_validation_split(train_size, num_train_examples):
+    # obtain training indices that will be used for validation
+    indices = list(range(num_train_examples))
+    np.random.shuffle(indices)
+    idx_split = int(np.floor(train_size * num_train_examples))
+    train_index, valid_index = indices[:idx_split], indices[idx_split:]
+
+    # define samplers for obtaining training and validation batches
+    train_sampler = SubsetRandomSampler(train_index)
+    valid_sampler = SubsetRandomSampler(valid_index)
+
+    return train_sampler,valid_sampler
 
 def generate_subset(dataset,n_classes,reducefactor,n_ex_class_init):
 
@@ -88,13 +107,15 @@ def generate_subset(dataset,n_classes,reducefactor,n_ex_class_init):
 
 ### These dataloader are ready to be used to train for scratch 
 minicifar_train= generate_subset(dataset=c10train,n_classes=n_classes_minicifar,reducefactor=R,n_ex_class_init=5000)
-minicifar_val= generate_subset(dataset=c10test,n_classes=n_classes_minicifar,reducefactor=R,n_ex_class_init=1000) 
-minicifar_test= generate_subset(dataset=c10test,n_classes=n_classes_minicifar,reducefactor=1,n_ex_class_init=1000) 
+num_train_examples=len(minicifar_train)
+train_sampler,valid_sampler=train_validation_split(train_size, num_train_examples)
+minicifar_test = generate_subset(dataset=c10test,n_classes=n_classes_minicifar,reducefactor=1,n_ex_class_init=1000) 
 
 
 ### These dataloader are ready to be used to train using Transfer Learning 
 ### from a backbone pretrained on ImageNet
 minicifar_train_im= generate_subset(dataset=c10train_imagenet,n_classes=n_classes_minicifar,reducefactor=R,n_ex_class_init=5000)
-minicifar_val_im= generate_subset(dataset=c10test_imagenet,n_classes=n_classes_minicifar,reducefactor=R,n_ex_class_init=1000)
+num_train_examples_im=len(minicifar_train_im)
+train_sampler_im,valid_sampler_im=train_validation_split(train_size, num_train_examples_im)
 minicifar_test_im= generate_subset(dataset=c10test_imagenet,n_classes=n_classes_minicifar,reducefactor=1,n_ex_class_init=1000)
 
