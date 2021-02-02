@@ -10,19 +10,22 @@ We will perform all experiments on the CIFAR10 dataset, as well as a subsamples 
 
 Part 1
 --
-Familiarize yourself with pytorch by doing the [60 minute deep learning blitz with pytorch](https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html). You don't need to do the final section about using multiple GPUs. 
+Familiarize yourself with pytorch by doing the [Pytorch_tutorial.ipynb](Pytorch_tutorial.ipynb), a jupyter notebook that you will be able to run also in VScode, after installing the Jupyter extension (remember to "Trust" the notebook, as explained [here](https://code.visualstudio.com/docs/python/jupyter-support)). If you are familiar with pytorch, you can go quickly over the tutorial and try to train a classifier in section 4 where you are asked to complete some cells.
 
 Part 2 
 --
 
-The file [minicifar.py](minicifar.py) downloads the CIFAR10 dataset, and performs a subsampling to generate the MINICIFAR dataset. The number of retained classes can be configured, as well as the ratio of the full dataset.
+The file [minicifar.py](minicifar.py) downloads the CIFAR10 dataset, and performs a subsampling to generate the MINICIFAR dataset. Look at this file carefully to understand how the dataset are generated: the number of retained classes can be configured, as well as the ratio of the full dataset and the percentage of training and validation sets.
+
+Remember that it is important to check how well your network generalizes looking at the performances on the validation set.
 
 The following code can be using to obtain a DataLoader, ready for training in pytorch : 
 
-    from minicifar import minicifar_train,minicifar_test
+    from minicifar import minicifar_train,minicifar_test,train_sampler,valid_sampler
     from torch.utils.data.dataloader import DataLoader
 
-    trainloader = DataLoader(minicifar_train,batch_size=32,shuffle=True)
+    trainloader = DataLoader(minicifar_train,batch_size=32,shuffle=True,sampler=train_sampler)
+    validloader = DataLoader(minicifar_train,batch_size=32,shuffle=True,sampler=valid_sampler)
     testloader = DataLoader(minicifar_test,batch_size=32) 
 
 We will now define a state of the art deep model and train it from scratch. Check out [here](https://github.com/kuangliu/pytorch-cifar/tree/master/models) for reference implementations of modern deep models for CIFAR10. 
@@ -49,6 +52,7 @@ Deep models pretrained on the ImageNet ILSVRC 2012 dataset can be readily loaded
     from torchvision import models 
 
     backbonemodel = models.resnet18(pretrained=True)
+
 
 The backbone can be used to generate feature vectors, which will serve as input to a downstream, small model, to perform classification on MINICIFAR. One way to do this is presented in [this tutorial](https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html#convnet-as-fixed-feature-extractor), but you can also easily find other ones. 
 
