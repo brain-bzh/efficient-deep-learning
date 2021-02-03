@@ -44,7 +44,10 @@ For example, install matplotlib using Windows PowerShell : `pip install matplotl
 
 ### NVIDIA drivers
 
-The latest nvidia CUDA drivers can be installed using the command line. Detailed steps can be found [here](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html)
+The latest nvidia drivers can be installed using the command line. For Ubuntu it should be :
+```bash
+sudo apt install nvidia-driver-460
+```
 
 ### Python / MiniConda
 We recommend installing Miniconda, as it significantly simplifies the installation setup. 
