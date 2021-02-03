@@ -1,21 +1,23 @@
 Repository for the course "Optimizing Artificial Intelligence" at IMT Atlantique
 --
-
+Getting started
+--
+Please see [here](getting_started.md) for instructions on how to setup your environment on your personal computer.
 
 Course organisation / Syllabus
 --
 
-Here is a detailed schedule, session by session:
-1. Introduction / Refresher on Deep Learning
-   1. [General Intro](intro.pdf) - Why do we need to optimize deep learning ? Introduction of the MicroNet Challenge.
+Here is a detailed schedule, session by session: 
+1. Introduction / Refresher on Deep Learning 
+   1. [General Intro](intro.pdf) - Why do we need to optimize deep learning ? Introduction of the MicroNet Challenge. 
    2. [Course](cours1.pdf) - Deep Learning and Transfer Learning.
-   3. [Practical session](lab1.md) - introduction to PyTorch, transfer learning.
+   3. [Practical session](lab1.md) - introduction to PyTorch, transfer learning. 
    4. Short project - exploring hyper parameters on a fixed architecture
 2. Quantification
    1. **Short evaluation** on Deep Learning Essentials
    2. **Student's presentation** of short project - exploring hyper parameters on a fixed architecture
    3. [Course](cours2.pdf) - Quantifying Deep neural networks
-   4. [Practical session](lab2.md) - quantification on a small convolutional network
+   4. [Practical session](lab2.md) - quantification on a small convolutional network 
    5. Long project 1 - MicroNet Challenge
 3. Pruning
    1. **Short evaluation** on Quantification
@@ -34,11 +36,11 @@ Here is a detailed schedule, session by session:
 6. Distillation
    1. **Short evaluation** on Factorization Pt1 and Pt2 and previous courses
    2. [Course](cours6.pdf) - Distillation of knowledge and features between neural networks
-   3. Long Project 4 - MicroNet Challenge
+   3. Long Project 4 - MicroNet Challenge 
 
-7. Embedded Software and Hardware for Deep Learning
+7. Embedded Software and Hardware for Deep Learning 
    1. **Short evaluation** on Distillation
-   2. [Course](cours7.pdf) - Embedded Software and Hardware for Deep Learning
+   2. Course - Embedded Software and Hardware for Deep Learning
    3. Long Project 6 - MicroNet Challenge
 8. Final Session
    1. **Short evaluation** on embedded software and hardware for Deep Learning
@@ -47,14 +49,14 @@ Here is a detailed schedule, session by session:
 
 
 
-Evaluation in this course
+Evaluation in this course 
 --
 
-There are **short written evaluations** during the first 10 minutes of **each** session starting from session 2. Don't be late!
+There are **short written evaluations** during the first 10 minutes of **each** session starting from session 2. Don't be late!  
 
-**For the final session**, we ask you to prepare a **20 minutes presentation**, that will be followed by 10 Minutes of question.
+**For the final session**, we ask you to prepare a **20 minutes presentation**, that will be followed by 10 Minutes of question. 
 
-You'll find in the [micronet-ressources folder](https://github.com/brain-bzh/ai-optim/tree/master/micronet-ressources), presentations from the winners of the 2019, and rules for the 2020 challenge.
+You'll find in the [micronet-ressources folder](https://github.com/brain-bzh/ai-optim/tree/master/micronet-ressources), presentations from the winners of the 2019, and rules for the 2020 challenge. 
 
 General References
 --
@@ -69,7 +71,7 @@ Amazon Book - [Dive into Deep learning](https://d2l.ai/)
 Training Deep Networks
 --
 
-Here are some academic papers discussing learning rate strategies :
+Here are some academic papers discussing learning rate strategies : 
 
 - [Cyclic learning rates](https://arxiv.org/abs/1506.01186)
 - [Demystifying Learning Rate Policies for High Accuracy Training of Deep Neural Networks](https://arxiv.org/abs/1908.06477)
@@ -88,13 +90,13 @@ Start page to access the full [python API](https://pytorch.org/docs/stable/torch
 
 Data Augmentation
 --
-Popular methods :
+Popular methods : 
 
 [Cut Out](https://github.com/uoguelph-mlrg/Cutout)
 
 [Auto Augment](https://github.com/DeepVoltaire/AutoAugment)
 
-Other ressources :
+Other ressources : 
 
 [A list of papers and code for data augmentation](https://github.com/CrazyVertigo/awesome-data-augmentation)
 
@@ -127,7 +129,7 @@ Pruning
 [BitPruning: Learning Bitlengths for Aggressive and Accurate Quantization](https://arxiv.org/abs/2002.03090)
 
 Factorization and operators
---
+-- 
 
 [Deep Compression](https://arxiv.org/abs/1510.00149)
 
@@ -161,7 +163,7 @@ See references section of [Tutorial presentation on Efficient Deep Learning from
 
 
 Companies / private sector
---
+-- 
 
 [13 highest funded startups for hardware for DL](https://www.crunchbase.com/lists/relevant-ai-chip-startups/922b3cf5-b19d-4c28-9978-4e66ccb52337/organization.companies)
 
