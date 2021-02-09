@@ -66,11 +66,10 @@ class BC():
         
     def restore(self):
 
-        ### To be completed 
-
         ### restore the copy from self.saved_params into the model 
 
-        1
+        for index in range(self.num_of_params):
+            self.target_modules[index].data.copy_(self.saved_params[index])
       
     def clip(self):
 
