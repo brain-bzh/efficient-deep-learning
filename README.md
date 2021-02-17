@@ -18,36 +18,42 @@ Here is a detailed schedule, session by session:
    2. **Student's presentation** of short project - exploring hyper parameters on a fixed architecture
    3. [Course](cours2.pdf) - Quantifying Deep neural networks
    4. [Practical session](lab2.md) - quantification on a small convolutional network 
-   5. Long project 1 - MicroNet Challenge
+   5. Long project
 3. Pruning
    1. **Short evaluation** on Quantification
    2. [Course](cours3.pdf) - Pruning Deep neural networks
    3. [Practical session](lab3.md) - pruning on a small convolutional network.
-   4. Long project 2 - MicroNet Challenge
+   4. Long project
 4. Factorization
    1. **Short evaluation** on Pruning
-   2. **Student's presentation** on current work on MicroNet
+   2. **Student's presentation** on current work on Long Project
    3. [Course](cours4.pdf) - Factorizing Deep neural networks
    4. Practical session - factorizing a small convolutional network
-   5. Long Project 3 - MicroNet Challenge
+   5. Long Project
 5. Factorisation - Part 2 - Operators and Architectures
    1. [Course](cours5.pdf) - Factorization Pt2, alternative operators and efficient architectures
-   2. Long Project 5 - MicroNet Challenge
+   2. Long Project
 6. Distillation
    1. **Short evaluation** on Factorization Pt1 and Pt2 and previous courses
    2. [Course](cours6.pdf) - Distillation of knowledge and features between neural networks
-   3. Long Project 4 - MicroNet Challenge 
+   3. Long Project
 
 7. Embedded Software and Hardware for Deep Learning 
    1. **Short evaluation** on Distillation
    2. Course - Embedded Software and Hardware for Deep Learning
-   3. Long Project 6 - MicroNet Challenge
+   3. Long Project
 8. Final Session
    1. **Short evaluation** on embedded software and hardware for Deep Learning
-   2. Long Project 7 - MicroNet Challenge
-   3. **Student's presentation** - Final results on MicroNet
+   2. Long Project
+   3. **Student's presentation** - Final presentation on Long Project
 
+What is expected for the Long Project
+--
+Short version : **Exploration of the accuracy / complexity tradeoff**
 
+Long version : this course is mostly based on the long project, and you have a lot of freedom, which we expect you to use. The overarching goal is to explore the tradeoff between the performances of neural networks (= Accuracy on the test set) and complexity. Complexity can be either computational complexity (number of arithmetic operations), or memory complexity (memory size necessary to use the network). 
+
+We encourage students to get creative and test combinations of the various ideas that we present. Starting from the end of Session 1, you already have enough knowledge to explore the tradeoff between architecture, number of parameters, and accuracy. Then, we study new notions that open new avenues to explore this tradeoff : quantization, pruning, factorization, distillation. In session 7, you'll have a deeper insight on how to thing about specific software or hardware architecture in order to fully exploit all the optimizations that can be done. 
 
 Evaluation in this course 
 --
@@ -56,7 +62,11 @@ There are **short written evaluations** during the first 10 minutes of **each** 
 
 **For the final session**, we ask you to prepare a **20 minutes presentation**, that will be followed by 10 Minutes of question. 
 
-You'll find in the [micronet-ressources folder](https://github.com/brain-bzh/ai-optim/tree/master/micronet-ressources), presentations from the winners of the 2019, and rules for the 2020 challenge. 
+What we expect for the presentations : 
+1. Explain your strategy to explore the complexity / accuracy tradeoff. We will judge whether you understood the goal, and whether the proposed strategy follows a rigourous approach.  
+2. The clarity of your exposition and quality of your support (slides)
+
+Importantly : We will NOT judge you based on accuracy scores, as long as you have baselines (non optimized) that are not too far from the usual accuracy for the considered dataset. 
 
 General References
 --
