@@ -90,13 +90,13 @@ Before explaining how this class works internally, here are a few examples on ho
 
         ### During training (check the algorithm in the course and in the paper to see the exact sequence of operations)
 
-        modelbc.binarization() ## This binarizes all weights in the model
+        mymodelbc.binarization() ## This binarizes all weights in the model
 
-        modelbc.restore() ###  This reloads the full precision weights
+        mymodelbc.restore() ###  This reloads the full precision weights
 
         ### After backprop
 
-        modelbc.clip() ## Clip the weights 
+        mymodelbc.clip() ## Clip the weights 
 With this information it should be rather clear how to implement the training loop for the Binary Connect algorithm. 
 
 Start by having a look at this [Notebook](Reading_copying_modifying_weights.ipynb), which will show you how to read, copy and write the weights in a pytorch model. 
