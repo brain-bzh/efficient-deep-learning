@@ -1,9 +1,7 @@
-import argparse
-
+import os
 import torch
 import torch.nn as nn
-import utils
-
+import resnet
 
 def count_conv2d(m, x, y):
     x = x[0] # remove tuple
@@ -71,6 +69,10 @@ def count_linear(m, x, y):
     print("Linear: F_in={}, F_out={}, params={}, operations={}".format(m.in_features,m.out_features,int(m.total_params.item()),int(total_ops)))
     m.total_ops += torch.Tensor([int(total_ops)])
 
+def count_sequential(m, x, y):
+    print ("Sequential: No additional parameters  / op")
+
+# custom ops could be used to pass variable customized ratios for quantization
 def profile(model, input_size, custom_ops = {}):
 
     model.eval()
@@ -93,6 +95,8 @@ def profile(model, input_size, custom_ops = {}):
             m.register_forward_hook(count_avgpool)
         elif isinstance(m, nn.Linear):
             m.register_forward_hook(count_linear)
+        elif isinstance(m, nn.Sequential):
+            m.register_forward_hook(count_sequential)
         else:
             print("Not implemented for ", m)
 
@@ -107,42 +111,28 @@ def profile(model, input_size, custom_ops = {}):
         if len(list(m.children())) > 0: continue
         total_ops += m.total_ops
         total_params += m.total_params
-    total_ops = total_ops
-    total_params = total_params
 
     return total_ops, total_params
 
 def main():
-    file = "checkpoint/Densenet1968-2_newtest2.pth"
-    model = torch.load(file)["net"].module.cpu()
+    # Resnet18 - Reference for CIFAR 10
+    ref_params = 5586981
+    ref_flops  = 834362880
+    # WideResnet-28-10 - Reference for CIFAR 100
+    # ref_params = 36500000
+    # ref_flops  = 10490000000
+
+    model = resnet.ResNet18()
     print(model)
     flops, params = profile(model, (1,3,32,32))
-
     flops, params = flops.item(), params.item()
-    wideresnet_params = 36500000
-    wideresnet_flops = 10490000000
-    score_flops = flops/wideresnet_flops
-    score_params = params/wideresnet_params
+
+    score_flops = flops / ref_flops
+    score_params = params / ref_params
     score = score_flops + score_params
-    print("AGAINST WIDERESNET")
     print("Flops: {}, Params: {}".format(flops,params))
     print("Score flops: {} Score Params: {}".format(score_flops,score_params))
     print("Final score: {}".format(score))
-
-#    mobilenet_params = 6900000
-#    mobilenet_flops = 1170000000
-#    score_flops = flops/mobilenet_flops
-#    score_params = params/mobilenet_params
-#    score = score_flops + score_params
-#    print("AGAINST MOBILENET")
-#    print("Flops: {}, Params: {}".format(flops,params))
-#    print("Score flops: {} Score Params: {}".format(score_flops,score_params))
-#    print("Final score: {}".format(score))
-
-
-    model = torch.load(file)["net"].module
-    clean_trainloader, trainloader, testloader = utils.load_data(32, cutout=True)
-    utils.test(model,testloader, "cuda", "no")
 
 if __name__ == "__main__":
     main()
