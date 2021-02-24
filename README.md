@@ -30,7 +30,7 @@ Here is a detailed schedule, session by session:
    3. [Course](cours4.pdf) - Factorizing Deep neural networks
    4. Practical session - factorizing a small convolutional network
    5. Long Project
-5. Factorisation - Part 2 - Operators and Architectures
+5. Factorization - Part 2 - Operators and Architectures
    1. [Course](cours5.pdf) - Factorization Pt2, alternative operators and efficient architectures
    2. Long Project
 6. Distillation
