@@ -18,7 +18,7 @@ The example from [Pruning Tutorial](https://pytorch.org/tutorials/intermediate/p
 The goal of today's session is to apply this previous knowledge in order to implement a pruning method. You can choose any of the methods that we studied in [course3](cours3.pdf), but probably the following four are the most straightforward to implement :
 1. Global Pruning, no retrain : simply remove weights with lowest l1 norm, measure accuracy for different pruning ratios
 2. [Learning both Weights and Connections for Efficient Neural Networks](https://arxiv.org/abs/1506.02626) :  apply a retrain after the first global pruning
-3. [Pruning Filters for Efficient ConvNets](https://arxiv.org/abs/1608.08710) : gradually prune and retrain accross layers
+3. [Pruning Filters for Efficient ConvNets](https://arxiv.org/abs/1608.08710) : different pruning ratios accross different layers
 4. [ThiNet](https://arxiv.org/abs/1707.06342): same, but based on the norms of feature maps
 
 There are several ways to prune, be innovative ! Different ratios, on different layers, different pruning criteria, diffrent ways of finetuning... Play !
