@@ -38,7 +38,7 @@ Par_Storage = N_par * Par_Quant_Ratio
 
 - If you performed structured pruning, you should modify the operation count in profile.py to disregard entirely pruned filters from the operations count.
 
-- As for the parameter storage index, if you performed quantization, an operation on data of less than 32-bits will be counted as a fraction of one operation. The score will than be equal to 
+- As for the parameter storage index, if quantization is performed, an operation on data of less than 32-bits will be counted as a fraction of one operation, where the numerator is the maximum number of bits in the inputs of the operation and the denominator is 32. For example, a multiplication operation with one 3-bit and one 5-bit input, with a 7-bit output, will count as 5/32nd of an operation. The score will than be equal to 
 
 ```
 Math_Ops = N_ops * Ops_Quant_Ratio = N_ops * M/32
