@@ -13,7 +13,7 @@ For example, when it is applied to weights, applying pruning functions on a modu
 
 If you want to permanently apply the pruning and get back to the original structure of your model, you have to apply [`prune.remove`](https://pytorch.org/docs/stable/generated/torch.nn.utils.prune.remove.html#torch-nn-utils-prune-remove) on the module. It will recreate `weight` as a parameter, with the content of `weight_orig` for unpruned weights, and 0s on pruned weights.
 
-The example from [Pruning Tutorial](https://pytorch.org/tutorials/intermediate/pruning_tutorial.html) considers a very simple network. Yours will be more complex. A first step should be to extract the modules to be pruned in order to prun them. Iterate over (torch.nn.Module.modules)[https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.modules] to extract the conv and linear layers. Then apply pruning.
+The example from [Pruning Tutorial](https://pytorch.org/tutorials/intermediate/pruning_tutorial.html) considers a very simple network. Yours will be more complex. A first step should be to extract the modules to be pruned in order to prun them. Iterate over [torch.nn.Module.modules](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.modules) to extract the conv and linear layers. Then apply pruning.
 
 The goal of today's session is to apply this previous knowledge in order to implement a pruning method. You can choose any of the methods that we studied in [course3](cours3.pdf), but probably the following four are the most straightforward to implement :
 1. Global Pruning, no retrain : simply remove weights with lowest l1 norm, measure accuracy for different pruning ratios
