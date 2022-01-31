@@ -1,8 +1,10 @@
-Repository for the course "Optimizing Artificial Intelligence" at IMT Atlantique
+Repository for the course "Efficient Deep Learning" at IMT Atlantique
 --
+
 Getting started
 --
-Please see [here](getting_started.md) for instructions on how to setup your environment on your personal computer.
+TODOs : instructions for accessing GPUs and activating environments.
+
 
 Course organisation / Syllabus
 --
@@ -13,39 +15,43 @@ Here is a detailed schedule, session by session:
    2. [Course](cours1.pdf) - Deep Learning and Transfer Learning.
    3. [Practical session](lab1.md) - introduction to PyTorch, transfer learning. 
    4. Short project - exploring hyper parameters on a fixed architecture
+   5. Presentation of the Challenge Objectives and Rules (Long Project)
 2. Quantification
    1. **Short evaluation** on Deep Learning Essentials
    2. **Student's presentation** of short project - exploring hyper parameters on a fixed architecture
    3. [Course](cours2.pdf) - Quantifying Deep neural networks
    4. [Practical session](lab2.md) - quantification on a small convolutional network 
-   5. Long project
+   5. Long project 1 - Challenge
 3. Pruning
    1. **Short evaluation** on Quantification
    2. [Course](cours3.pdf) - Pruning Deep neural networks
    3. [Practical session](lab3.md) - pruning on a small convolutional network.
-   4. Long project
-4. Factorization
+   4. Long project 2 - Challenge
+4. Data Augmentation, Regularization and Self-Supervised Learning
    1. **Short evaluation** on Pruning
-   2. **Student's presentation** on current work on Long Project
+   2. **Student's presentation** on current work on Challenge
+   3. [Course](cours4.pdf) - Data Augmentation, Regularization and Self-supervised Learning
+   4. Practical session - Data Augmentation
+   5. Long Project 3 - Challenge
+5. Factorization
+   1. **Short evaluation** on Data Augmentation
+   2. **Student's presentation** on current work on Challenge
    3. [Course](cours4.pdf) - Factorizing Deep neural networks
    4. Practical session - factorizing a small convolutional network
-   5. Long Project
-5. Factorization - Part 2 - Operators and Architectures
-   1. [Course](cours5.pdf) - Factorization Pt2, alternative operators and efficient architectures
-   2. Long Project
+   5. Long Project 4 - Challenge
 6. Distillation
-   1. **Short evaluation** on Factorization Pt1 and Pt2 and previous courses
+   1. **Long evaluation** on Factorization and previous courses
    2. [Course](cours6.pdf) - Distillation of knowledge and features between neural networks
-   3. Long Project
+   3. Long Project 5 - Challenge
 
 7. Embedded Software and Hardware for Deep Learning 
    1. **Short evaluation** on Distillation
-   2. [Course](cours7.pdf) - Embedded Software and Hardware for Deep Learning
-   3. Long Project
+   2. Course - Embedded Software and Hardware for Deep Learning
+   3. Long Project 6 - Challenge
 8. Final Session
    1. **Short evaluation** on embedded software and hardware for Deep Learning
-   2. Long Project
-   3. **Student's presentation** - Final presentation on Long Project
+   2. Long Project 7 - Challenge
+   3. **Student's presentation** - Challenge final results
 
 What is expected for the Long Project
 --
@@ -179,3 +185,7 @@ Companies / private sector
 
 [More complete list of companies working on hardware DL](https://roboticsandautomationnews.com/2019/05/24/top-25-ai-chip-companies-a-macro-step-change-on-the-micro-scale/22704/)
 
+
+Setting up on personal computer
+--
+Please see [here](getting_started.md) for instructions on how to setup your environment on your personal computer.
