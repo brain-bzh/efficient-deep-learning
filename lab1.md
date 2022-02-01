@@ -22,7 +22,7 @@ The file [minicifar.py](minicifar.py) downloads the CIFAR10 dataset, and perform
 
 Remember that it is important to check how well your network generalizes looking at the performances on the validation set.
 
-The following code can be using to obtain a DataLoader, ready for training in pytorch : 
+The following code can be used to obtain a DataLoader, ready for training in pytorch : 
 ```python
 
 from minicifar import minicifar_train,minicifar_test,train_sampler,valid_sampler
