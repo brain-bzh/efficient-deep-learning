@@ -1,9 +1,9 @@
 from minicifar import minicifar_train, minicifar_test, train_sampler, valid_sampler
 from torch.utils.data.dataloader import DataLoader
 
-trainloader = DataLoader(minicifar_train, batch_size=32, sampler=train_sampler)
-validloader = DataLoader(minicifar_train, batch_size=32, sampler=valid_sampler)
-testloader = DataLoader(minicifar_test, batch_size=32)
+trainloader = DataLoader(minicifar_train, batch_size=200, sampler=train_sampler)
+validloader = DataLoader(minicifar_train, batch_size=200, sampler=valid_sampler)
+testloader = DataLoader(minicifar_test, batch_size=200)
 
 
 """Train CIFAR10 with PyTorch."""
@@ -28,6 +28,7 @@ from utils import progress_bar
 parser = argparse.ArgumentParser(description="PyTorch CIFAR10 Training")
 parser.add_argument("--lr", default=0.1, type=float, help="learning rate")
 parser.add_argument("--resume", "-r", action="store_true", help="resume from checkpoint")
+parser.add_argument("--nepochs", "-n", default=100, type=int, help="number of epochs")
 args = parser.parse_args()
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -36,7 +37,8 @@ start_epoch = 0  # start from epoch 0 or last checkpoint epoch
 
 loss_train = []
 loss_test = []
-n_epochs = 30
+# n_epochs = 50
+n_epochs = args.nepochs
 
 # Data
 print("==> Preparing data..")
@@ -96,7 +98,8 @@ if args.resume:
     start_epoch = checkpoint["epoch"]
 
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=0.9, weight_decay=5e-4)
+optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=0.5, weight_decay=1e-4)
+#! momentum=0.9, weight_decay=5e-4
 scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=200)
 
 
@@ -188,6 +191,7 @@ plt.title("Loss Function", size=10)
 plt.xlabel("Epoch", size=10)
 plt.ylabel("Loss", size=10)
 plt.show()
+# plt.savefig("result.png")
 
 
 # TODO
