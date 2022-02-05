@@ -18,7 +18,27 @@ Choose a model among the following ones :
 
 Next, adapt its hyperparameters to make the model suitable for MINICIFAR, and train it from scratch. 
 
-**hyperparameters 
+**Hyperparameters to modify:**
+
+- Network
+
+  - num of hidden layers
+  - num of hidden layer units
+  - activation function
+
+- Optimization
+
+  - learning rate
+  - n_epochs
+  - batch-size
+  - optimizer(SGD, Adam, ...)
+  - transform
+
+- Regularization(**deal with overfitting**)
+
+  - weight_decay
+
+  - dropout
 
 
 ### TASK 2. Figure Accuracy vs Number of Parameters
