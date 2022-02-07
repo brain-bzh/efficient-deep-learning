@@ -5,7 +5,6 @@
 #  
 import torch.nn as nn
 import numpy
-from torch.autograd import Variable
 
 
 class BC():
@@ -62,7 +61,7 @@ class BC():
 
         
         1
-        ### (2) Binarize the weights in the model, by iterating through the list of target modules and overwrite the values with their binary version
+        ### (2) Binarize the weights in the model, by iterating through the list of target modules and overwrite the values with their binary version (in {-1,+1})
         
     def restore(self):
 
