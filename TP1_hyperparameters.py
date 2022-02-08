@@ -159,10 +159,10 @@ def test(epoch):
 
 
 def init_weights(layer):
-    # 如果为卷积层，使用正态分布初始化
+    # If convolutional layer, initialize with normal distribution
     if type(layer) == nn.Conv2d:
         nn.init.normal_(layer.weight, mean=0, std=0.5)
-    # 如果为全连接层，权重使用均匀分布初始化，偏置初始化为0.1
+    # If fully connected layer, initialize with uniform distribution with bias=0.1
     elif type(layer) == nn.Linear:
         nn.init.uniform_(layer.weight, a=-0.1, b=0.1)
         nn.init.constant_(layer.bias, 0.1)
