@@ -169,14 +169,33 @@ def init_weights(layer):
 
 
 fig1 = plt.figure()
-for lr in [0.3, 0.1, 0.03, 0.01]:
+# for lr in [0.3, 0.1, 0.03, 0.01]:
+#     net.apply(init_weights)
+
+#     loss_train = []
+#     loss_test = []
+
+#     criterion = nn.CrossEntropyLoss()
+#     optimizer = optim.SGD(net.parameters(), lr=lr, momentum=0.5, weight_decay=1e-3)
+#     #! momentum=0.9, weight_decay=5e-4
+#     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=200)
+
+#     for epoch in range(start_epoch, start_epoch + n_epochs):
+#         train(epoch)
+#         test(epoch)
+#         scheduler.step()
+
+#     plt.plot(range(n_epochs), loss_train, label=f"Train_{lr}")
+#     plt.plot(range(n_epochs), loss_test, label=f"Validation_{lr}")
+
+for wd in [5e-3, 1e-3, 5e-4, 1e-4]:
     net.apply(init_weights)
 
     loss_train = []
     loss_test = []
 
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.SGD(net.parameters(), lr=lr, momentum=0.5, weight_decay=1e-3)
+    optimizer = optim.SGD(net.parameters(), lr=0.1, momentum=0.5, weight_decay=wd)
     #! momentum=0.9, weight_decay=5e-4
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=200)
 
@@ -185,14 +204,14 @@ for lr in [0.3, 0.1, 0.03, 0.01]:
         test(epoch)
         scheduler.step()
 
-    plt.plot(range(n_epochs), loss_train, label=f"Train_{lr}")
-    plt.plot(range(n_epochs), loss_test, label=f"Validation_{lr}")
+    plt.plot(range(n_epochs), loss_train, label=f"Train_wd={wd}")
+    plt.plot(range(n_epochs), loss_test, label=f"Validation_wd={wd}")
 
 plt.legend()  # prop={"size": 10}
 plt.title("Loss Function", size=10)
 plt.xlabel("Epoch", size=10)
 plt.ylabel("Loss", size=10)
-plt.ylim(ymax=200)
+plt.ylim(ymax=100)
 plt.show()
 fig1.tight_layout()
 fig1.savefig("TP1_report/figure1.png")
