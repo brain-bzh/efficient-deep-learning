@@ -18,6 +18,9 @@ Choose a model among the following ones :
 
 Next, adapt its hyperparameters to make the model suitable for MINICIFAR, and train it from scratch. 
 
+### Architecture of VGG
+
+
 ### Play with hyperparameters
 
 **Hyperparameters to modify:**
@@ -66,20 +69,20 @@ This figure shows the loss function with different `batch_size`. In this case we
 ### Deal with overfitting
 
 **Main idea:** `weight_decay` -> `VGG11` -> More data
+To deal with overfitting, we firstly think about regularization by using `weight_decay`. Unfortunately we were not able to obtain satisfactory results and it is easy to cause underfitting.
 
+We then considered reducing the depth of the network, so we tried VGG11. This time our overfitting improved and the network was computed faster.
 
+Later, we noticed that we were using only one-fifth of the dataset, and increasing the number of samples is always the most efficient way to solve overfitting. The cost is higher storage space requirements and longer computation time, but these are acceptable for the current computing power we have.
 
 Finally with `weight_decay=5e-4`, `lr=0.03`, `batch_size=800` and 100 epoch on VGG11, we get this figure with a accuracy of **91.275%**.
-
-
-
-
+<img src="Vgg11_Lr0.3.png" alt="Vgg11_Lr0.3" style="zoom:72%;" />
 
 
 ### TASK 2. Figure Accuracy vs Number of Parameters
 Consider the four models of TASK 1. and, taking in account the [accuracy obtained on CIFAR10](https://github.com/kuangliu/pytorch-cifar), generate a graph accuracy vs number of parameters.
 
-[image]
+<img src="accuracy.png" alt="accuracy" style="zoom:100%;" />
 
 
 
