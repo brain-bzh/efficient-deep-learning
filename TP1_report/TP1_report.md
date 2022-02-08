@@ -14,31 +14,66 @@ Choose a model among the following ones :
 - ResNet
 - PreActResNet
 - DenseNet
-- VGG
+- ***VGG***
 
 Next, adapt its hyperparameters to make the model suitable for MINICIFAR, and train it from scratch. 
+
+### Play with hyperparameters
 
 **Hyperparameters to modify:**
 
 - Network
 
-  - num of hidden layers
-  - num of hidden layer units
+  - ***num of hidden layers***
+  - ***num of hidden layer units***
   - activation function
-
 - Optimization
 
-  - learning rate
-  - n_epochs
-  - batch-size
+  - ***learning rate***
+  - ***n_epochs***
+  - ***batch-size***
   - optimizer(SGD, Adam, ...)
   - transform
-
 - Regularization(**deal with overfitting**)
 
-  - weight_decay
+  - ***weight_decay***
+- dropout
 
-  - dropout
+We start by executing the calculation on`VGG16` with `lr=0.1`.
+
+<img src="TP1_lr0.1.png" alt="TP1_lr0.1" style="zoom:80%;" />
+
+After 200 epochs, we resume by using `lr=0.01`. We notice that the loss in the validation set and that in the test set gradually increase, so we conclude that there is an overfitting.
+
+<img src="TP1_lr_0.01.png" alt="TP1_lr0.01" style="zoom:80%;" />
+
+The learning rate is the first hyperparameter that comes to our mind. This figure shows the loss function with different learning rate `lr`. When the learning rate is large, the model learns fast and the loss function decreases quickly, but it tends to oscillate around the optimal solution, causing the loss to fluctuate up and down.
+
+<img src="Loss_Lr.png" alt="Loss_Lr" style="zoom:72%;" />
+
+We then try to modify the `weight_decay`, which is the $\lambda$ in the equation (1). By adding this parameter, we penalize overly complex models to prevent overfitting.
+$$
+\min _{\theta} \frac{1}{2 m} \sum_{i=1}^{m}\left(h_{\theta}\left(x^{(i)}\right)-y^{(i)}\right)^{2}+\lambda \sum_{j=1}^{n} \theta_{j}^{2}
+$$
+This figure shows the loss function with different `weight_decay`. Notice that too large a penalty factor can lead to an oversimplified model, which in turn leads to underfitting.
+
+<img src="Loss_wd.png" alt="Loss_wd" style="zoom:72%;" />
+
+This figure shows the loss function with different `batch_size`. In this case we chose R=5 (3200 in the train set and 800 in the validation set). The time required for each epoch ranges from about 1.8s to 1.15s. We notice that as the batch size becomes larger, the time to train each epoch gradually becomes smaller.
+
+<img src="Loss_Batchsize.png" alt="Loss_Batchsize" style="zoom:72%;" />
+
+### Deal with overfitting
+
+**Main idea:** `weight_decay` -> `VGG11` -> More data
+
+
+
+Finally with `weight_decay=5e-4`, `lr=0.03`, `batch_size=800` and 100 epoch on VGG11, we get this figure with a accuracy of **91.275%**.
+
+
+
+
 
 
 ### TASK 2. Figure Accuracy vs Number of Parameters
@@ -47,40 +82,6 @@ Consider the four models of TASK 1. and, taking in account the [accuracy obtaine
 [image]
 
 
-
-## Part 3: TRANSFER LEARNING
-
-For Transfer Learning, we have pretrained the models adapted to CIFAR 10
-
-- ResNet
-- PreActResNet
-- DenseNet
-- VGG
-
-of the [repository](https://github.com/kuangliu/pytorch-cifar) using a larger dataset [CIFAR-100](https://www.cs.toronto.edu/~kriz/cifar.html) . CIFAR-100 is just like the CIFAR-10, except it has 100 classes containing 600 images each. To reduce the overlap between the lables from CIFAR-10 and CIFAR-100, we ignored super-classes of CIFAR-100 that are conceptually similar to CIFAR-10 classes. 
-
-You can load the models from the folder models_cifar100, for example using
-
-```python
-import models_cifar100
-backbone=models_cifar100.ResNet18()
-```
-
-then download the pretrained model weights  at this [link](https://partage.imt.fr/index.php/s/o4ZzekyBHjgx4iS) and load them 
-
-```python
-if torch.cuda.is_available():
-    state_dict=torch.load(backbone_weights_path)
-else:
-    state_dict=torch.load(backbone_weights_path,map_location=torch.device('cpu'))
-
-backbone.load_state_dict(state_dict['net'])
-
-```
-
-The backbone can be used to generate feature vectors, which will serve as input to a classifier (e.g. last fully connected layer) to perform classification on MINICIFAR. One way to do this is presented in [this tutorial](https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html#convnet-as-fixed-feature-extractor), but you can also easily find other ones. For instance, after having trained only the classifier (transfer learning) you may want to **fine-tune for a few epochs the whole model** to improve performances.
-
----
 
 ## Part 4 - Project
 
