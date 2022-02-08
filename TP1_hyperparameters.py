@@ -215,7 +215,3 @@ plt.ylim(ymax=100)
 plt.show()
 fig1.tight_layout()
 fig1.savefig("TP1_report/figure1.png")
-
-
-# TODO
-# Try to play with hyperparameters e.g. batch, epoch, lr, optimizer
