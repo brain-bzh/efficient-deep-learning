@@ -7,6 +7,7 @@
 # Reduction factor R (which will result in 10000 /  R examples per class for the train set, and 1000 / R per class for test)
 # --
 
+#!
 
 n_classes_minicifar = 4
 train_size = 0.8

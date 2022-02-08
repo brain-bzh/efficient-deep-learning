@@ -1,9 +1,9 @@
 from minicifar import minicifar_train, minicifar_test, train_sampler, valid_sampler
 from torch.utils.data.dataloader import DataLoader
 
-trainloader = DataLoader(minicifar_train, batch_size=200, sampler=train_sampler)
-validloader = DataLoader(minicifar_train, batch_size=200, sampler=valid_sampler)
-testloader = DataLoader(minicifar_test, batch_size=200)
+trainloader = DataLoader(minicifar_train, batch_size=800, sampler=train_sampler)
+validloader = DataLoader(minicifar_train, batch_size=800, sampler=valid_sampler)
+testloader = DataLoader(minicifar_test, batch_size=800)
 
 
 """Train CIFAR10 with PyTorch."""
@@ -26,7 +26,7 @@ from utils import progress_bar
 
 
 parser = argparse.ArgumentParser(description="PyTorch CIFAR10 Training")
-parser.add_argument("--lr", default=0.1, type=float, help="learning rate")
+parser.add_argument("--lr", default=0.03, type=float, help="learning rate")
 parser.add_argument("--resume", "-r", action="store_true", help="resume from checkpoint")
 parser.add_argument("--nepochs", "-n", default=100, type=int, help="number of epochs")
 args = parser.parse_args()
@@ -58,31 +58,10 @@ transform_test = transforms.Compose(
     ]
 )
 
-# trainset = torchvision.datasets.CIFAR10(root="./data", train=True, download=True, transform=transform_train)
-# trainloader = torch.utils.data.DataLoader(trainset, batch_size=128, shuffle=True, num_workers=2)
-
-# testset = torchvision.datasets.CIFAR10(root="./data", train=False, download=True, transform=transform_test)
-# testloader = torch.utils.data.DataLoader(testset, batch_size=100, shuffle=False, num_workers=2)
-
-# classes = ("plane", "car", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck")
-
 # Model
 print("==> Building model..")
 net = VGG("VGG11")
-# net = ResNet18()
-# net = PreActResNet18()
-# net = GoogLeNet()
-# net = DenseNet121()
-# net = ResNeXt29_2x64d()
-# net = MobileNet()
-# net = MobileNetV2()
-# net = DPN92()
-# net = ShuffleNetG2()
-# net = SENet18()
-# net = ShuffleNetV2(1)
-# net = EfficientNetB0()
-# net = RegNetX_200MF()
-# net = SimpleDLA()
+
 net = net.to(device)
 if device == "cuda":
     net = torch.nn.DataParallel(net)
@@ -98,7 +77,7 @@ if args.resume:
     start_epoch = checkpoint["epoch"]
 
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=0.5, weight_decay=1e-3)
+optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=0.5, weight_decay=5e-4)
 #! momentum=0.9, weight_decay=5e-4
 scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=200)
 
@@ -190,10 +169,7 @@ plt.legend(["Train", "Validation"], prop={"size": 10})
 plt.title("Loss Function", size=10)
 plt.xlabel("Epoch", size=10)
 plt.ylabel("Loss", size=10)
+plt.ylim(ymax=20, ymin=0)
 plt.show()
 fig1.tight_layout()
 fig1.savefig("TP1_report/figure1.png")
-
-
-# TODO
-# Try to play with hyperparameters e.g. batch, epoch, lr, optimizer

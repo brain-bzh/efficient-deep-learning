@@ -145,17 +145,17 @@ def test(epoch):
 
     # Save checkpoint.
     acc = 100.0 * correct / total
-    if acc > best_acc:
-        print("Saving..")
-        state = {
-            "net": net.state_dict(),
-            "acc": acc,
-            "epoch": epoch,
-        }
-        if not os.path.isdir("checkpoint"):
-            os.mkdir("checkpoint")
-        torch.save(state, "./checkpoint/ckpt.pth")
-        best_acc = acc
+    # if acc > best_acc:
+    #     print("Saving..")
+    #     state = {
+    #         "net": net.state_dict(),
+    #         "acc": acc,
+    #         "epoch": epoch,
+    #     }
+    #     if not os.path.isdir("checkpoint"):
+    #         os.mkdir("checkpoint")
+    #     torch.save(state, "./checkpoint/ckpt.pth")
+    #     best_acc = acc
 
 
 def init_weights(layer):
