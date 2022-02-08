@@ -1,9 +1,10 @@
-Repository for the course "Efficient Deep Learning" at IMT Atlantique
+Coursework for "Efficient Deep Learning" at IMT Atlantique
 --
 
-Getting started
---
-TODOs : instructions for accessing GPUs and activating environments.
+**Made by:**
+
+- Zijie NING @[mm0806son](https://github.com/mm0806son)
+- Guoxiong SUN @[GuoxiongSUN](https://github.com/GuoxiongSUN)
 
 
 Course organisation / Syllabus
