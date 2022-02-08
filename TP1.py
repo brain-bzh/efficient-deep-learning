@@ -68,7 +68,7 @@ transform_test = transforms.Compose(
 
 # Model
 print("==> Building model..")
-net = VGG("VGG16")
+net = VGG("VGG11")
 # net = ResNet18()
 # net = PreActResNet18()
 # net = GoogLeNet()
@@ -98,7 +98,7 @@ if args.resume:
     start_epoch = checkpoint["epoch"]
 
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=0.5, weight_decay=1e-4)
+optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=0.5, weight_decay=1e-3)
 #! momentum=0.9, weight_decay=5e-4
 scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=200)
 
@@ -181,9 +181,9 @@ for epoch in range(start_epoch, start_epoch + n_epochs):
     test(epoch)
     scheduler.step()
 
-fig = plt.figure()
 
 # plt.plot(x, y)
+fig1 = plt.figure()
 plt.plot(range(n_epochs), loss_train)
 plt.plot(range(n_epochs), loss_test)
 plt.legend(["Train", "Validation"], prop={"size": 10})
@@ -191,7 +191,8 @@ plt.title("Loss Function", size=10)
 plt.xlabel("Epoch", size=10)
 plt.ylabel("Loss", size=10)
 plt.show()
-# plt.savefig("result.png")
+fig1.tight_layout()
+fig1.savefig("TP1_report/figure1.png")
 
 
 # TODO
