@@ -77,7 +77,7 @@ We then considered reducing the depth of the network, so we tried VGG11. This ti
 
 Later, we noticed that we were using only one-fifth of the dataset, and increasing the number of samples is always the most efficient way to solve overfitting. The cost is higher storage space requirements and longer computation time, but these are acceptable for the current computing power we have.
 
-Finally with `weight_decay=5e-4`, `lr=0.03`, `batch_size=800` and 100 epoch on VGG11, we get this figure with a accuracy of **91.275%**.
+Finally with `weight_decay=5e-4`, `lr=0.03`, `batch_size=800` and 100 epoch on VGG11, we get this figure with a accuracy of **91.275%**. It took us about 20min.
 
 <img src="Vgg11_Lr0.3.png" alt="Vgg11_Lr0.3" style="zoom:72%;" />
 
