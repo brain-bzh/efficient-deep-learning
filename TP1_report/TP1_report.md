@@ -67,7 +67,7 @@ cfg = {
 - Regularization(**deal with overfitting**)
 
   - ***weight_decay***
-- dropout
+  - dropout
 
 We start by executing the calculation on`VGG16` with `lr=0.1`.
 
@@ -121,3 +121,9 @@ Prepare a presentation (10 minutes + 5 minutes question) with the following cont
 - Hyperparameter exploration strategy 
 - Results on MINICIFAR, focusing on illustrating the **compromises between model size, training time and performance**
 
+
+
+## Feed Back
+
+1. Don't change Lr for Adam.
+2. Think about ploting the accuracy and that of each class.
