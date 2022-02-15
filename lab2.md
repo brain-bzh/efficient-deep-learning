@@ -114,7 +114,7 @@ Part 3 - CIFAR10 and CIFAR100
 Now is the time to start working properly on some real challenging dataset ! The final goal of the project for this course is to explore how to reduce the number of computations and memory requirements for performing inference on CIFAR10 and CIFAR100. So far, we have seen how to explore hyperparameters (in session 1) and how to consider quantization (this session). Same question than for the same presentation : can you explore these concepts with a chosen deep learning architecture, and explore the accuracy / architecture size tradeoff ? 
 
 A few starting points : 
-- Take some time to check out the [state of the art](paperswithcode.com) results that can be obtained on CIFAR10 and CIFAR100. Which architecture did they use ? Did they use any additional data apart from the dataset ? 
+- Take some time to check out the [state of the art](https://paperswithcode.com/sota/image-classification-on-cifar-10) results that can be obtained on CIFAR10 and CIFAR100. Which architecture did they use ? Did they use any additional data apart from the dataset ? 
 - Experiment with various modern DL networks with quantization while training, using either binaryconnect, or another method such as BWN, XNorNet, while training on CIFAR10
 - Have a look at the winners of the last MicroNet competition. We have not yet introduced all the concepts in the course, but it is still interesting that you begin to familiarize yourself with this litterature. 
 
