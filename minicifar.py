@@ -71,10 +71,10 @@ c10test_imagenet = CIFAR10(rootdir,train=False,download=True,transform=transform
 # CIFAR10 is sufficiently large so that training a model up to the state of the art performance will take approximately 3 hours on the 1060 GPU available on your machine. 
 # As a result, we will create a "MiniCifar" dataset, based on CIFAR10, with less classes and exemples. 
 
-def train_validation_split(train_size, num_train_examples):
+def train_validation_split(train_size, num_train_examples,seed=69):
     # obtain training indices that will be used for validation
     indices = list(range(num_train_examples))
-    np.random.shuffle(indices)
+    np.random.RandomState(seed=seed).shuffle(indices)
     idx_split = int(np.floor(train_size * num_train_examples))
     train_index, valid_index = indices[:idx_split], indices[idx_split:]
 
