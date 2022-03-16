@@ -66,7 +66,7 @@ Evaluation in this course
 
 There are **short written evaluations** during the first 10 minutes of **each** session starting from session 2. Don't be late!  
 
-**For the final session**, we ask you to prepare a **20 minutes presentation**, that will be followed by 10 Minutes of question. 
+**For the final session**, we ask you to prepare a **10 minutes presentation**, that will be followed by 5 Minutes of question. 
 
 What we expect for the presentations : 
 1. Explain your strategy to explore the complexity / accuracy tradeoff. We will judge whether you understood the goal, and whether the proposed strategy follows a rigourous approach.  
