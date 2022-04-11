@@ -1,11 +1,6 @@
 Repository for the course "Efficient Deep Learning" at IMT Atlantique
 --
 
-Getting started
---
-TODOs : instructions for accessing GPUs and activating environments.
-
-
 Course organisation / Syllabus
 --
 
@@ -18,21 +13,20 @@ Here is a detailed schedule, session by session:
    5. Presentation of the Challenge Objectives and Rules (Long Project)
 2. Quantification
    1. **Short evaluation** on Deep Learning Essentials
-   2. **Student's presentation** of short project - exploring hyper parameters on a fixed architecture
-   3. [Course](cours2.pdf) - Quantifying Deep neural networks
-   4. [Practical session](lab2.md) - quantification on a small convolutional network 
-   5. Long project 1 - Challenge
+   2. [Course](cours2.pdf) - Quantifying Deep neural networks
+   3. [Practical session](lab2.md) - quantification on a small convolutional network 
+   4. Long project 1 - Challenge
 3. Pruning
    1. **Short evaluation** on Quantification
-   2. [Course](cours3.pdf) - Pruning Deep neural networks
-   3. [Practical session](lab3.md) - pruning on a small convolutional network.
-   4. Long project 2 - Challenge
+   2. **Student's presentation** of short project - exploring hyper parameters on a fixed architecture
+   3. [Course](cours3.pdf) - Pruning Deep neural networks
+   4. [Practical session](lab3.md) - pruning on a small convolutional network.
+   5. Long project 2 - Challenge
 4. Data Augmentation, Regularization and Self-Supervised Learning
    1. **Short evaluation** on Pruning
-   2. **Student's presentation** on current work on Challenge
-   3. [Course](cours4.pdf) - Data Augmentation, Regularization and Self-supervised Learning
-   4. Practical session - [Data Augmentation](lab4.md)
-   5. Long Project 3 - Challenge
+   2. [Course](cours4.pdf) - Data Augmentation, Regularization and Self-supervised Learning
+   3. Practical session - Data Augmentation
+   4. Long Project 3 - Challenge
 5. Factorization
    1. **Short evaluation** on Data Augmentation
    2. **Student's presentation** on current work on Challenge
@@ -66,7 +60,7 @@ Evaluation in this course
 
 There are **short written evaluations** during the first 10 minutes of **each** session starting from session 2. Don't be late!  
 
-**For the final session**, we ask you to prepare a **10 minutes presentation**, that will be followed by 5 Minutes of question. 
+**For the final session**, we ask you to prepare a **20 minutes presentation**, that will be followed by 10 Minutes of question. 
 
 What we expect for the presentations : 
 1. Explain your strategy to explore the complexity / accuracy tradeoff. We will judge whether you understood the goal, and whether the proposed strategy follows a rigourous approach.  
