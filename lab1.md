@@ -6,7 +6,7 @@ The objectives of this first lab session are the following:
 - Train a classifier using Transfer Learning from a pretrained model
 - Explore hyperparameters of a given architecture
 
-We will perform all experiments on the CIFAR10 dataset, as well as a subsamples of CIFAR10. 
+We will perform all experiments on the CIFAR10 dataset. 
 
 ---
 ## Part 1
@@ -16,23 +16,66 @@ Familiarize yourself with pytorch by doing the [Pytorch_tutorial.ipynb](Pytorch_
 ---
 ## Part 2 
 
+The following code can be used to obtain a DataLoader for CIFAR10, ready for training in pytorch : 
 
-The file [minicifar.py](minicifar.py) downloads the CIFAR10 dataset, and performs a subsampling to generate the MINICIFAR dataset. Look at this file carefully to understand how the dataset are generated: the number of retained classes can be configured, as well as the ratio of the full dataset and the percentage of training and validation sets.
-
-
-Remember that it is important to check how well your network generalizes looking at the performances on the validation set.
-
-The following code can be used to obtain a DataLoader, ready for training in pytorch : 
 ```python
-
-from minicifar import minicifar_train,minicifar_test,train_sampler,valid_sampler
+from torchvision.datasets import CIFAR10
+import numpy as np 
+import torchvision.transforms as transforms
+import torch 
 from torch.utils.data.dataloader import DataLoader
 
-trainloader = DataLoader(minicifar_train,batch_size=32,sampler=train_sampler)
-validloader = DataLoader(minicifar_train,batch_size=32,sampler=valid_sampler)
-testloader = DataLoader(minicifar_test,batch_size=32) 
+## Normalization adapted for CIFAR10
+normalize_scratch = transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010))
+
+# Transforms is a list of transformations applied on the 'raw' dataset before the data is fed to the network. 
+# Here, Data augmentation (RandomCrop and Horizontal Flip) are applied to each batch, differently at each epoch, on the training set data only
+transform_train = transforms.Compose([
+    transforms.RandomCrop(32, padding=4),
+    transforms.RandomHorizontalFlip(),
+    transforms.ToTensor(),
+    normalize_scratch,
+])
+
+transform_test = transforms.Compose([
+    transforms.ToTensor(),
+    normalize_scratch,
+])
+
+### The data from CIFAR10 will be downloaded in the following folder
+rootdir = './data/cifar10'
+
+c10train = CIFAR10(rootdir,train=True,download=True,transform=transform_train)
+c10test = CIFAR10(rootdir,train=False,download=True,transform=transform_test)
+
+trainloader = DataLoader(c10train,batch_size=32,shuffle=True)
+testloader = DataLoader(c10test,batch_size=32) 
 ```
 
+However, this will load the entire CIFAR10 dataset, which has 50000 examples per class for training ; this can result in a relatively long training. As a consequence, we encourage you to use the following code, with a [RandomSampler](https://pytorch.org/docs/stable/data.html#torch.utils.data.RandomSampler) in order to use a subset of training : 
+
+
+```python
+## number of target samples for the final dataset
+num_train_examples = len(c10train)
+num_samples_subset = 15000
+
+## We set a seed manually so as to reproduce the results easily
+seed  = 2147483647
+
+## Generate a list of shuffled indices ; with the fixed seed, the permutation will always be the same, for reproducibility
+indices = list(range(num_train_examples))
+np.random.RandomState(seed=seed).shuffle(indices)## modifies the list in place
+
+## We define the Subset using the generated indices 
+c10train_subset = torch.utils.data.Subset(c10train,indices[:num_samples_subset])
+print(f"Initial CIFAR10 dataset has {len(c10train)} samples")
+print(f"Subset of CIFAR10 dataset has {len(c10train_subset)} samples")
+
+# Finally we can define anoter dataloader for the training data
+trainloader_subset = DataLoader(c10train_subset,batch_size=32,shuffle=True)
+### You can now use either trainloader (full CIFAR10) or trainloader_subset (subset of CIFAR10) to train your networks.
+```
 
 We will now define a state of the art deep model and train it from scratch. Check out [here](https://github.com/kuangliu/pytorch-cifar/tree/master/models) for reference implementations of modern deep models for CIFAR10. 
 
@@ -44,9 +87,7 @@ Choose a model among the following ones :
 - DenseNet
 - VGG
   
-
-Next, adapt its hyperparameters to make the model suitable for MINICIFAR, and train it from scratch. Try to get as close as possible to the [results obtained on CIFAR10](https://github.com/kuangliu/pytorch-cifar). 
-
+Next, train it on a subset of CIFAR10. Try to compare with the performances on the full CIFAR10 [reported here](https://github.com/kuangliu/pytorch-cifar). 
 
 A few hints : 
 - Learning rate is a very important (if not the most important) hyperparameter, and is routinely scheduled to change a few times during training. A typical strategy is to divide it by 10 when reaching a plateau in performance. 
@@ -62,7 +103,7 @@ Consider the four models of TASK 1. and, taking in account the [accuracy obtaine
 ---
 ## Part 3: TRANSFER LEARNING
 
-For Transfer Learning, we have pretrained the models adapted to CIFAR 10
+For Transfer Learning, we have pretrained the models 
 
 - ResNet
 - PreActResNet
@@ -90,7 +131,7 @@ backbone.load_state_dict(state_dict['net'])
 
 ```
 
-The backbone can be used to generate feature vectors, which will serve as input to a classifier (e.g. last fully connected layer) to perform classification on MINICIFAR. One way to do this is presented in [this tutorial](https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html#convnet-as-fixed-feature-extractor), but you can also easily find other ones. For instance, after having trained only the classifier (transfer learning) you may want to **fine-tune for a few epochs the whole model** to improve performances.
+The backbone can be used to generate feature vectors, which will serve as input to a classifier (e.g. last fully connected layer) to perform classification on CIFAR10. One way to do this is presented in [this tutorial](https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html#convnet-as-fixed-feature-extractor), but you can also easily find other ones. For instance, after having trained only the classifier (transfer learning) you may want to **fine-tune for a few epochs the whole model** to improve performances.
 
 ---
 
@@ -99,8 +140,8 @@ The backbone can be used to generate feature vectors, which will serve as input 
 Prepare a presentation (10 minutes + 5 minutes question) with the following content : 
 - Description of the chosen architecture
 - Hyperparameter exploration strategy 
-- Results on MINICIFAR, focusing on illustrating the **compromises between model size, training time and performance**
+- Results on CIFAR10 subset, focusing on illustrating the **compromises between model size, training time and performance**
 
-If you are ahead in time, you can perform similar experiments on CIFAR-10 and CIFAR-100, but be aware that each run (e.g. 350 epochs) might take as long as 3 hours.
+If you are ahead in time, you can perform similar experiments on the full CIFAR-10 and CIFAR-100, but be aware that each run (e.g. 350 epochs) might take as long as 3 hours.
 
 **N.B. It is very important that you consider the models in the kuangliu repository, as they have been dimensioned for the CIFAR-10 dataset. Respective models taken from other sources may be have been optimized for other datasets and therefore not adapted (over or underparametrized) to CIFAR-10.**
