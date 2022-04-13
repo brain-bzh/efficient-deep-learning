@@ -22,13 +22,12 @@ When saving network weights (checkpoints, in ‘pt’ or ‘pth’ format) , als
 # Remote VS Code (Campux Machines)
 VS Code used for this tutorial: 1.64.2
 
-1. Install an [OpenSSH compatible SSH client](https://code.visualstudio.com/docs/remote/troubleshooting#_installing-a-supported-ssh-client)
-2. Install VS Code Extension named `Remote Development`.
-3. Hit F1 key and go to `Remote-SSH: Connect To Host...`
-4. Enter your pc id: `pc-elec-xxx`
-5. Enter your password when prompted
-6. If asked about fingerprints, hit `Continue`
-7. You should have a green rectangle with `SSH: pc-elec-xxx` on the bottom left corner of your screen. If you don't or got an error along the way, call the teacher for help.
+1. Install VS Code Extension named `Remote Development`.
+2. Hit F1 key and go to `Remote-SSH: Connect To Host...`
+3. Enter your pc id: `pc-elec-xxx`
+4. Enter your password when prompted
+5. If asked about fingerprints, hit `Continue`
+6. You should have a green rectangle with `SSH: pc-elec-xxx` on the bottom left corner of your screen. If you don't or got an error along the way, call the teacher for help.
 
 # Remote VS Code (Personal Machines)
 VS Code used for this tutorial: 1.64.2
