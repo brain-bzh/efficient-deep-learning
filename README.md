@@ -40,7 +40,7 @@ Here is a detailed schedule, session by session:
 
 7. Embedded Software and Hardware for Deep Learning 
    1. **Short evaluation** on Distillation
-   2. Course - Embedded Software and Hardware for Deep Learning
+   2. [Course](cours7.pdf) - Embedded Software and Hardware for Deep Learning
    3. Long Project 6 - Challenge
 8. Final Session
    1. **Short evaluation** on embedded software and hardware for Deep Learning
