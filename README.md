@@ -30,7 +30,7 @@ Here is a detailed schedule, session by session:
 5. Factorization
    1. **Short evaluation** on Data Augmentation
    2. **Student's presentation** on current work on Challenge
-   3. [Course](cours4.pdf) - Factorizing Deep neural networks
+   3. [Course](cours5_withnotes.pdf) - Factorizing Deep neural networks
    4. Practical session - factorizing a small convolutional network
    5. Long Project 4 - Challenge
 6. Distillation
