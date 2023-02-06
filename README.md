@@ -17,26 +17,26 @@ Here is a detailed schedule, session by session:
    3. Short project - exploring hyper parameters on a fixed architecture
 3. Quantification
    1. **Short evaluation** on CNN layers
-   2. [Course](cours2.pdf) - Quantifying Deep neural networks
-   3. [Practical session](lab2.md) - quantification on a small convolutional network 
-   4. Long project 1 - Challenge
+   2. **Students presentations** of short project - exploring hyper parameters on a fixed architecture
+   3. [Course](cours2.pdf) - Quantifying Deep neural networks
+   4. [Practical session](lab2.md) - quantification on a small convolutional network 
+   5. Long project 1 - Challenge
 4. Pruning
    1. **Short evaluation** on Quantification
-   2. **Student's presentation** of short project - exploring hyper parameters on a fixed architecture
-   3. [Course](cours3.pdf) - Pruning Deep neural networks
-   4. [Practical session](lab3.md) - pruning on a small convolutional network.
-   5. Long project 2 - Challenge
+   2. [Course](cours3.pdf) - Pruning Deep neural networks
+   3. [Practical session](lab3.md) - pruning on a small convolutional network.
+   4. Long project 2 - Challenge
 5. Data Augmentation, Regularization and Self-Supervised Learning
    1. **Short evaluation** on Pruning
-   2. [Course](cours4.pdf) - Data Augmentation, Regularization and Self-supervised Learning
-   3. Practical session - Data Augmentation
-   4. Long Project 3 - Challenge
+   2. **Students presentations** on current work on Challenge
+   3. [Course](cours4.pdf) - Data Augmentation, Regularization and Self-supervised Learning
+   4. Practical session - Data Augmentation
+   5. Long Project 3 - Challenge
 6. Factorization
    1. **Short evaluation** on Data Augmentation
-   2. **Student's presentation** on current work on Challenge
-   3. [Course](cours5_withnotes.pdf) - Factorizing Deep neural networks
-   4. Practical session - factorizing a small convolutional network
-   5. Long Project 4 - Challenge
+   2. [Course](cours5_withnotes.pdf) - Factorizing Deep neural networks
+   3. Practical session - factorizing a small convolutional network
+   4. Long Project 4 - Challenge
 7. Distillation & Embedded Software and Hardware for Deep Learning 
    1. **Long evaluation** on Factorization and previous courses
    2. [Course](cours6.pdf) - Distillation of knowledge and features between neural networks
