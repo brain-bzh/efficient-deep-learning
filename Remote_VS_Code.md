@@ -24,7 +24,7 @@ VS Code used for this tutorial: 1.64.2
 
 1. Install VS Code Extension named `Remote Development`.
 2. Hit F1 key and go to `Remote-SSH: Connect To Host...`
-3. Enter your pc id: `pc-elec-xxx`
+3. Enter your pc id: `pc-elec-xxx.priv.enst-bretagne.fr`
 4. Enter your password when prompted
 5. If asked about fingerprints, hit `Continue`
 6. You should have a green rectangle with `SSH: pc-elec-xxx` on the bottom left corner of your screen. If you don't or got an error along the way, call the teacher for help.
