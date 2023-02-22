@@ -25,7 +25,7 @@ There are several ways to prune, be innovative ! Different ratios, on different 
 
 Part 2 - Combining all techniques on CIFAR10 and CIFAR100
 --
-Now, it's your turn to combine everything we have seen so far to start performing some interesting comparisons using the three datasets CIFAR10 and CIFAR100.
+Now, it's your turn to combine everything we have seen so far to start performing some interesting comparisons using the datasets CIFAR10 and / or CIFAR100.
 
 Consider the different factors that can influence the total memory footprint needed to store the network parameters as well as feature maps / activations.
 
