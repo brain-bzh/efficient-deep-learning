@@ -30,7 +30,7 @@ Here is a detailed schedule, session by session:
    1. **Short evaluation** on Pruning
    2. **Students presentations** on current work on Challenge
    3. [Course](cours4.pdf) - Data Augmentation, Regularization and Self-supervised Learning
-   4. Practical session - Data Augmentation
+   4. [Practical Session(lab4.md) - Data Augmentation
    5. Long Project 3 - Challenge
 6. Factorization
    1. **Short evaluation** on Data Augmentation
