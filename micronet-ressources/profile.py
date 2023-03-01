@@ -3,6 +3,11 @@ import torch
 import torch.nn as nn
 import resnet
 
+our_quant=16
+quant_factors={1:16,8:4,16:2,32:1}
+quant_factor= quant_factors[our_quant]
+sparsity=0.
+
 def count_conv2d(m, x, y):
     x = x[0] # remove tuple
 
@@ -14,14 +19,16 @@ def count_conv2d(m, x, y):
     kernel_mul = sh * sw * fin
     kernel_add = sh * sw * fin - 1
     bias_ops = 1 if m.bias is not None else 0
-    kernel_mul = kernel_mul/2 # FP16
-    ops = kernel_mul + kernel_add + bias_ops
+    kernel_mul = kernel_mul/quant_factor
+    ops = (kernel_mul + kernel_add)/m.groups + bias_ops
 
     # total ops
     num_out_elements = y.numel()
     total_ops = num_out_elements * ops
 
-    print("Conv2d: S_c={}, F_in={}, F_out={}, P={}, params={}, operations={}".format(sh,fin,fout,x.size()[2:].numel(),int(m.total_params.item()),int(total_ops)))
+    #Nice Formatting
+    print("{:<10}: S_c={:<4}, F_in={:<4}, F_out={:<4}, P={:<5}, params={:<10}, operations={:<20}".format("Conv2d",sh,fin,fout,x.size()[2:].numel(),int(m.total_params.item()),int(total_ops)))
+    # print("Conv2d: S_c={}, F_in={}, F_out={}, P={}, params={}, operations={}".format(sh,fin,fout,x.size()[2:].numel(),int(m.total_params.item()),int(total_ops)))
     # incase same conv is used multiple times
     m.total_ops += torch.Tensor([int(total_ops)])
 
@@ -35,7 +42,9 @@ def count_bn2d(m, x, y):
     total_ops = total_sub + total_div
 
     m.total_ops += torch.Tensor([int(total_ops)])
-    print("Batch norm: F_in={} P={}, params={}, operations={}".format(x.size(1),x.size()[2:].numel(),int(m.total_params.item()),int(total_ops)))
+    #Nice Formatting
+    print("{:<10}: S_c={:<4}, F_in={:<4}, F_out={:<4}, P={:<5}, params={:<10}, operations={:<20}".format("Batch norm",'x',x.size(1),'x',x.size()[2:].numel(),int(m.total_params.item()),int(total_ops)))
+    # print("Batch norm: F_in={} P={}, params={}, operations={}".format(x.size(1),x.size()[2:].numel(),int(m.total_params.item()),int(total_ops)))
 
 
 def count_relu(m, x, y):
@@ -62,7 +71,7 @@ def count_avgpool(m, x, y):
 
 def count_linear(m, x, y):
     # per output element
-    total_mul = m.in_features/2
+    total_mul = m.in_features/quant_factor
     total_add = m.in_features - 1
     num_elements = y.numel()
     total_ops = (total_mul + total_add) * num_elements
@@ -83,7 +92,7 @@ def profile(model, input_size, custom_ops = {}):
         m.register_buffer('total_params', torch.zeros(1))
 
         for p in m.parameters():
-            m.total_params += torch.Tensor([p.numel()]) / 2 # Division Free quantification
+            m.total_params += torch.Tensor([p.numel()]) / quant_factor # Score changes with quantification
 
         if isinstance(m, nn.Conv2d):
             m.register_forward_hook(count_conv2d)
@@ -128,7 +137,7 @@ def main():
     flops, params = flops.item(), params.item()
 
     score_flops = flops / ref_flops
-    score_params = params / ref_params
+    score_params = (params / ref_params)*(1-sparsity)
     score = score_flops + score_params
     print("Flops: {}, Params: {}".format(flops,params))
     print("Score flops: {} Score Params: {}".format(score_flops,score_params))

@@ -119,7 +119,7 @@ import models_cifar100
 backbone=models_cifar100.ResNet18()
 ```
 
-then download the pretrained model weights  at this [link](https://partage.imt.fr/index.php/s/o4ZzekyBHjgx4iS) and load them 
+then download the pretrained model weights  at this [link](https://partage.imt.fr/index.php/s/kNsBNKpCwQqxc7x) and load them 
 
 ```python
 if torch.cuda.is_available():

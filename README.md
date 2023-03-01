@@ -11,41 +11,41 @@ Here is a detailed schedule, session by session:
    3. [Practical session](lab1.md) - introduction to PyTorch, transfer learning. 
    4. Short project - exploring hyper parameters on a fixed architecture
    5. Presentation of the Challenge Objectives and Rules (Long Project)
-2. Quantification
+2. Time for the project
    1. **Short evaluation** on Deep Learning Essentials
-   2. [Course](cours2.pdf) - Quantifying Deep neural networks
-   3. [Practical session](lab2.md) - quantification on a small convolutional network 
-   4. Long project 1 - Challenge
-3. Pruning
+   2. Course - Layers of a CNN, their computational cost and their memory footprint
+   3. Short project - exploring hyper parameters on a fixed architecture
+3. Quantification
+   1. **Short evaluation** on CNN layers
+   2. **Students presentations** of short project - exploring hyper parameters on a fixed architecture
+   3. [Course](cours2.pdf) - Quantifying Deep neural networks
+   4. [Practical session](lab2.md) - quantification on a small convolutional network 
+   5. Long project 1 - Challenge
+4. Pruning
    1. **Short evaluation** on Quantification
-   2. **Student's presentation** of short project - exploring hyper parameters on a fixed architecture
-   3. [Course](cours3.pdf) - Pruning Deep neural networks
-   4. [Practical session](lab3.md) - pruning on a small convolutional network.
-   5. Long project 2 - Challenge
-4. Data Augmentation, Regularization and Self-Supervised Learning
+   2. [Course](cours3.pdf) - Pruning Deep neural networks
+   3. [Practical session](lab3.md) - pruning on a small convolutional network.
+   4. Long project 2 - Challenge
+5. Data Augmentation, Regularization and Self-Supervised Learning
    1. **Short evaluation** on Pruning
-   2. [Course](cours4.pdf) - Data Augmentation, Regularization and Self-supervised Learning
-   3. Practical session - Data Augmentation
-   4. Long Project 3 - Challenge
-5. Factorization
+   2. **Students presentations** on current work on Challenge
+   3. [Course](cours4.pdf) - Data Augmentation, Regularization and Self-supervised Learning
+   4. [Practical Session](lab4.md) - Data Augmentation
+   5. Long Project 3 - Challenge
+6. Factorization
    1. **Short evaluation** on Data Augmentation
-   2. **Student's presentation** on current work on Challenge
-   3. [Course](cours4.pdf) - Factorizing Deep neural networks
-   4. Practical session - factorizing a small convolutional network
-   5. Long Project 4 - Challenge
-6. Distillation
+   2. [Course](cours5_withnotes.pdf) - Factorizing Deep neural networks
+   3. Practical session - factorizing a small convolutional network
+   4. Long Project 4 - Challenge
+7. Distillation & Embedded Software and Hardware for Deep Learning 
    1. **Long evaluation** on Factorization and previous courses
    2. [Course](cours6.pdf) - Distillation of knowledge and features between neural networks
+   3. [Course](cours7.pdf) - Embedded Software and Hardware for Deep Learning
    3. Long Project 5 - Challenge
-
-7. Embedded Software and Hardware for Deep Learning 
-   1. **Short evaluation** on Distillation
-   2. Course - Embedded Software and Hardware for Deep Learning
-   3. Long Project 6 - Challenge
 8. Final Session
-   1. **Short evaluation** on embedded software and hardware for Deep Learning
-   2. Long Project 7 - Challenge
-   3. **Student's presentation** - Challenge final results
+   1. **Short evaluation** on distillation and embedded software and hardware for Deep Learning
+   2. Long Project 6 - Challenge
+   3. **Students presentations** - Challenge final results
 
 What is expected for the Long Project
 --
@@ -60,7 +60,7 @@ Evaluation in this course
 
 There are **short written evaluations** during the first 10 minutes of **each** session starting from session 2. Don't be late!  
 
-**For the final session**, we ask you to prepare a **20 minutes presentation**, that will be followed by 10 Minutes of question. 
+**For the final session**, we ask you to prepare a **15 minutes presentation**, that will be followed by 5 Minutes of question. 
 
 What we expect for the presentations : 
 1. Explain your strategy to explore the complexity / accuracy tradeoff. We will judge whether you understood the goal, and whether the proposed strategy follows a rigourous approach.  
