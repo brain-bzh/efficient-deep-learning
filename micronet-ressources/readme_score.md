@@ -16,7 +16,7 @@ The global score takes in account **parameter storage** and **math operations** 
 
 Threshold accuracies are of **90% for CIFAR10** and **80% for CIFAR100**: models whose performances are below the theshold accuracy won't be taken in account for the *challenges*.
 
-The [profile.py](https://github.com/brain-bzh/ai-optim/blob/master/micronet-ressources/profile.py) we provided is a good example of how to calculate the score. It follows the micronet challenges rules for scoring that take in account sparsity and quantization. However, depending on your implementation, you may need to slightly modify profile.py to adapt it to your model, following the rules listed below.
+The [profile.py](https://github.com/brain-bzh/ai-optim/blob/master/micronet-ressources/profile.py) we provided is a good example of how to calculate the score. It follows the micronet challenges rules for scoring that take in account sparsity and quantization. However, depending on your implementation, you will need to slightly modify profile.py to adapt it to your model, following the rules listed below.
 
 ## Parameter storage
 ### *Number of model parameters required to perform inference.*
