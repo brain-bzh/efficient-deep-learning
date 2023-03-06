@@ -15,7 +15,7 @@ Here is a detailed schedule, session by session:
    1. **Short evaluation** on Deep Learning Essentials
    2. Course - Layers of a CNN, their computational cost and their memory footprint
    3. Short project - exploring hyper parameters on a fixed architecture
-3. Quantification
+3. Quantization
    1. **Short evaluation** on CNN layers
    2. **Students presentations** of short project - exploring hyper parameters on a fixed architecture
    3. [Course](cours2.pdf) - Quantifying Deep neural networks
