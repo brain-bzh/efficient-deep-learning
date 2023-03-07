@@ -16,7 +16,7 @@ The global score takes in account **parameter storage** and **math operations** 
 
 Threshold accuracies are of **90% for CIFAR10** and **80% for CIFAR100**: models whose performances are below the theshold accuracy won't be taken in account for the *challenges*.
 
-The [profile.py](https://github.com/brain-bzh/ai-optim/blob/master/micronet-ressources/profile.py) we provided is a good example of how to calculate the score. It follows the micronet challenges rules for scoring that take in account sparsity and quantization. However, depending on your implementation, you may need to slightly modify profile.py to adapt it to your model, following the rules listed below.
+The [profile.py](https://github.com/brain-bzh/ai-optim/blob/master/micronet-ressources/profile.py) we provided is a good example of how to calculate the score. It follows the micronet challenges rules for scoring that take in account sparsity and quantization. However, depending on your implementation, you will need to slightly modify profile.py to adapt it to your model, following the rules listed below.
 
 ## Parameter storage
 ### *Number of model parameters required to perform inference.*
@@ -28,7 +28,7 @@ The [profile.py](https://github.com/brain-bzh/ai-optim/blob/master/micronet-ress
 ```
 Par_Storage = N_par * Par_Quant_Ratio 
 ```
-32-bit parameter counts as Par_Quant_Ratio=1. Quantized parameters of less than 32-bits will be counted as a fraction of one parameter. For example, an 8-bit parameter counts as 1/4th a parameter. In the micronet challenge (and the profile.py) it is assumed that 16-bits quantization is the base one, as it comes for "free" (no accuracy loss).
+32-bit parameter counts as Par_Quant_Ratio=1. Quantized parameters of less than 32-bits will be counted as a fraction of one parameter. For example, an 8-bit parameter counts as 1/4th a parameter.
 
 *N.B. if different format are used in the same model, then you should consider the sum of parameters storage indexes for the different quantization formats.*
 
