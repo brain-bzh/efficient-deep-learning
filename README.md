@@ -165,6 +165,10 @@ Distillation
 
 [And the bit goes down: Revisiting the quantization of neural networks](https://arxiv.org/abs/1907.05686)
 
+Self-Supervised Learning
+--
+[Pretext tasks used for learning Representations from data without labels](https://atcold.github.io/pytorch-Deep-Learning/en/week10/10-1/)
+
 
 Embedded Software and Hardware
 --
