@@ -4,7 +4,7 @@ import torch.nn as nn
 import resnet
 
 our_quant=16
-quant_factors={1:16,8:4,16:2,32:1}
+quant_factors={1:32,8:4,16:2,32:1}
 quant_factor= quant_factors[our_quant]
 sparsity=0.
 
