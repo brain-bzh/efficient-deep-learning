@@ -35,8 +35,7 @@ Here is a detailed schedule, session by session:
 6. Factorization
    1. **Short evaluation** on Data Augmentation
    2. [Course](cours5_withnotes.pdf) - Factorizing Deep neural networks
-   3. Practical session - factorizing a small convolutional network
-   4. Long Project 4 - Challenge
+   3. Long Project 4 - Challenge
 7. Distillation & Embedded Software and Hardware for Deep Learning 
    1. **Long evaluation** on Factorization and previous courses
    2. [Course](cours6.pdf) - Distillation of knowledge and features between neural networks
