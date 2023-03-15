@@ -65,8 +65,6 @@ What we expect for the presentations :
 1. Explain your strategy to explore the complexity / accuracy tradeoff. We will judge whether you understood the goal, and whether the proposed strategy follows a rigourous approach.  
 2. The clarity of your exposition and quality of your support (slides)
 
-Importantly : We will NOT judge you based on accuracy scores, as long as you have baselines (non optimized) that are not too far from the usual accuracy for the considered dataset. 
-
 General References
 --
 
