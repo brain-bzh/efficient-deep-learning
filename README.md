@@ -27,11 +27,11 @@ Here is a detailed schedule, session by session:
    2. [Course](cours3.pdf) - Pruning Deep neural networks
    3. [Practical session](lab3.md) - pruning on a small convolutional network.
    4. Long project 2 - Challenge
-5.  Self-Supervised Learning and Distillation
+5. Self-Supervised Learning and Distillation
    1. **Short evaluation** on Pruning
    2. **Students presentations** on current work on Challenge
    3. [Course](cours4.pdf) - Self-Supervised Learning 
-   4. [Course](cours6.pdf) - Distillation of knowledge and features between neural network
+   4. [Course](cours6.pdf) - Distillation of knowledge and features between neural networks
    6. Long Project 3 - Challenge
 6. Factorization
    1. **Short evaluation** on Data Augmentation
