@@ -11,10 +11,11 @@ Here is a detailed schedule, session by session:
    3. [Practical session](lab1.md) - introduction to PyTorch, transfer learning. 
    4. Short project - exploring hyper parameters on a fixed architecture
    5. Presentation of the Challenge Objectives and Rules (Long Project)
-2. Time for the project
+2. Data Augmentation, Regularization 
    1. **Short evaluation** on Deep Learning Essentials
-   2. Course - Layers of a CNN, their computational cost and their memory footprint
-   3. Short project - exploring hyper parameters on a fixed architecture
+   2. [Course](cours4.pdf) - Data Augmentation, Regularization 
+   3. [Practical Session](lab4.md) - Data Augmentation
+   4. Short project - exploring hyper parameters on a fixed architecture
 3. Quantization
    1. **Short evaluation** on CNN layers
    2. **Students presentations** of short project - exploring hyper parameters on a fixed architecture
@@ -26,20 +27,19 @@ Here is a detailed schedule, session by session:
    2. [Course](cours3.pdf) - Pruning Deep neural networks
    3. [Practical session](lab3.md) - pruning on a small convolutional network.
    4. Long project 2 - Challenge
-5. Data Augmentation, Regularization and Self-Supervised Learning
+5.  Self-Supervised Learning and Distillation
    1. **Short evaluation** on Pruning
    2. **Students presentations** on current work on Challenge
-   3. [Course](cours4.pdf) - Data Augmentation, Regularization and Self-supervised Learning
-   4. [Practical Session](lab4.md) - Data Augmentation
-   5. Long Project 3 - Challenge
+   3. [Course](cours4.pdf) - Self-Supervised Learning 
+   4. [Course](cours6.pdf) - Distillation of knowledge and features between neural network
+   6. Long Project 3 - Challenge
 6. Factorization
    1. **Short evaluation** on Data Augmentation
    2. [Course](cours5_withnotes.pdf) - Factorizing Deep neural networks
    3. Long Project 4 - Challenge
-7. Distillation & Embedded Software and Hardware for Deep Learning 
+7. Embedded Software and Hardware for Deep Learning 
    1. **Long evaluation** on Factorization and previous courses
-   2. [Course](cours6.pdf) - Distillation of knowledge and features between neural networks
-   3. [Course](cours7.pdf) - Embedded Software and Hardware for Deep Learning
+   2. [Course](cours7.pdf) - Embedded Software and Hardware for Deep Learning
    3. Long Project 5 - Challenge
 8. Final Session
    1. **Short evaluation** on distillation and embedded software and hardware for Deep Learning
