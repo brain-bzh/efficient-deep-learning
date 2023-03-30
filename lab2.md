@@ -8,7 +8,7 @@ The objectives of this second lab session are the following:
 We will perform experiments on CIFAR10  datasets. 
 
 
-Prologue - How to reload your previous models
+Recap - How to reload your previous models
 --
 Pytorch has a [page](https://pytorch.org/tutorials/beginner/saving_loading_models.html#saving-loading-model-for-inference) explaining how to save and load models. But here are a few additional details. 
 
