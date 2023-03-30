@@ -101,37 +101,44 @@ Consider the four models of TASK 1. and, taking in account the [accuracy obtaine
 ![Image](accuracy_vs_parameters_imagenet.png)
 
 ---
-## Part 3: TRANSFER LEARNING
+## Part 3: Save and reload your trained models
 
-For Transfer Learning, we have pretrained the models 
+--
+Pytorch has a [page](https://pytorch.org/tutorials/beginner/saving_loading_models.html#saving-loading-model-for-inference) explaining how to save and load models. But here are a few additional details. 
 
-- ResNet
-- PreActResNet
-- DenseNet
-- VGG
+Most probably, in the last session you explored various architecture hyperparameters. In order to load a model, you need to define the model in the same way that it was defined when training it. 
 
-of the [repository](https://github.com/kuangliu/pytorch-cifar) using a larger dataset [CIFAR-100](https://www.cs.toronto.edu/~kriz/cifar.html) . CIFAR-100 is just like the CIFAR-10, except it has 100 classes containing 600 images each. To reduce the overlap between the lables from CIFAR-10 and CIFAR-100, we ignored super-classes of CIFAR-100 that are conceptually similar to CIFAR-10 classes. 
+Let's assume your model definition during training had a single hyperparameter that you explored with various values.
 
-You can load the models from the folder models_cifar100, for example using
+        model = MySuperModel(hyperparam = hparam_currentvalue)
 
-```python
-import models_cifar100
-backbone=models_cifar100.ResNet18()
-```
+The following code enables you to save the currently trained model (his parameters, it is called a *state dictionary* in pytorch) as well as the current value `hparam_currentvalue` of the hyperparameter.
 
-then download the pretrained model weights  at this [link](https://partage.imt.fr/index.php/s/kNsBNKpCwQqxc7x) and load them 
+        state = {
+                'net': model.state_dict(),
+                'hyperparam': hparam_currentvalue
+        }
 
-```python
-if torch.cuda.is_available():
-    state_dict=torch.load(backbone_weights_path)
-else:
-    state_dict=torch.load(backbone_weights_path,map_location=torch.device('cpu'))
+        torch.save(state, 'mybestmodel.pth')
 
-backbone.load_state_dict(state_dict['net'])
+In order to reload this model, first we need to define it. This means we need to fetch the value of the hyperparameter before defining the model and loading the trained parameters. 
 
-```
+        # We load the dictionnary
+        loaded_cpt = torch.load('mybestmodel.pth')
 
-The backbone can be used to generate feature vectors, which will serve as input to a classifier (e.g. last fully connected layer) to perform classification on CIFAR10. One way to do this is presented in [this tutorial](https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html#convnet-as-fixed-feature-extractor), but you can also easily find other ones. For instance, after having trained only the classifier (transfer learning) you may want to **fine-tune for a few epochs the whole model** to improve performances.
+        # Fetch the hyperparam value
+        hparam_bestvalue = loaded_cpt['hyperparam']
+
+        # Define the model 
+        model = MySuperModel(hyperparam = hparam_bestvalue)
+
+        # Finally we can load the state_dict in order to load the trained parameters 
+        model.load_state_dict(loaded_cpt['net'])
+
+        # If you use this model for inference (= no further training), you need to set it into eval mode
+        model.eval()
+
+
 
 ---
 
