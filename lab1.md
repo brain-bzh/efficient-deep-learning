@@ -3,7 +3,7 @@
 The objectives of this first lab session are the following:
 - Familiarize yourself with pytorch
 - Train a model from scratch using a state of the art architecture
-- Train a classifier using Transfer Learning from a pretrained model
+- Learn how to load your saved models
 - Explore hyperparameters of a given architecture
 
 We will perform all experiments on the CIFAR10 dataset. 
@@ -103,10 +103,10 @@ Consider the four models of TASK 1. and, taking in account the [accuracy obtaine
 ---
 ## Part 3: Save and reload your trained models
 
---
+
 Pytorch has a [page](https://pytorch.org/tutorials/beginner/saving_loading_models.html#saving-loading-model-for-inference) explaining how to save and load models. But here are a few additional details. 
 
-Most probably, in the last session you explored various architecture hyperparameters. In order to load a model, you need to define the model in the same way that it was defined when training it. 
+You explored various architecture hyperparameters and saved your trained models. In order to load a model, you need to define the model in the same way that it was defined when training it. 
 
 Let's assume your model definition during training had a single hyperparameter that you explored with various values.
 
@@ -123,7 +123,7 @@ The following code enables you to save the currently trained model (his paramete
 
 In order to reload this model, first we need to define it. This means we need to fetch the value of the hyperparameter before defining the model and loading the trained parameters. 
 
-        # We load the dictionnary
+        # We load the dictionary
         loaded_cpt = torch.load('mybestmodel.pth')
 
         # Fetch the hyperparam value
