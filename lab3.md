@@ -1,37 +1,121 @@
 Lab Session 3
 --
-The objectives of this third lab session is to perform experiments using pruning methods.
+The objectives of this second lab session are the following:
+- Quantize a neural network post-training
+- Quantize during training using Binary Connect
+- Explore the influence of quantization on performance on a modern DL architecture
 
-Part 1
+We will perform experiments on CIFAR10  datasets. 
+
+
+Recap - How to reload your previous models
 --
-Pytorch provides a library designed to ease the pruning of neural networks : [Pruning Tutorial](https://pytorch.org/tutorials/intermediate/pruning_tutorial.html).
-Pay attention to the difference between the pruning functions (like [`prune.random_unstructured`](https://pytorch.org/docs/stable/generated/torch.nn.utils.prune.random_unstructured.html#torch-nn-utils-prune-random-unstructured)) and the [`prune.remove`](https://pytorch.org/docs/stable/generated/torch.nn.utils.prune.remove.html#torch-nn-utils-prune-remove) function.
+Pytorch has a [page](https://pytorch.org/tutorials/beginner/saving_loading_models.html#saving-loading-model-for-inference) explaining how to save and load models. But here are a few additional details. 
 
-For example, when it is applied to weights, applying pruning functions on a module create a duplicate of the original weights (`weight_orig`) and a related mask (`weight_mask`). It changes the structure of the module.
+Most probably, in the last session you explored various architecture hyperparameters. In order to load a model, you need to define the model in the same way that it was defined when training it. 
 
-`weight_orig` becomes a [torch.nn.parameter.Parameter](https://pytorch.org/docs/stable/generated/torch.nn.parameter.Parameter.html#parameter), and therefore if you train the model, it's this tensor that will be modified. `weight` is a simple attribute that is computed during the forward pass, by applying `weight_mask` on `weight_orig`.
+Let's assume your model definition during training had a single hyperparameter that you explored with various values.
 
-If you want to permanently apply the pruning and get back to the original structure of your model, you have to apply [`prune.remove`](https://pytorch.org/docs/stable/generated/torch.nn.utils.prune.remove.html#torch-nn-utils-prune-remove) on the module. It will recreate `weight` as a parameter, with the content of `weight_orig` for unpruned weights, and 0s on pruned weights.
+        model = MySuperModel(hyperparam = hparam_currentvalue)
 
-The example from [Pruning Tutorial](https://pytorch.org/tutorials/intermediate/pruning_tutorial.html) considers a very simple network. Yours will be more complex. A first step should be to extract the modules to be pruned in order to prun them. Iterate over (torch.nn.Module.modules)[https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.modules] to extract the conv and linear layers. Then apply pruning.
+The following code enables you to save the currently trained model (his parameters, it is called a *state dictionary* in pytorch) as well as the current value `hparam_currentvalue` of the hyperparameter.
 
-The goal of today's session is to apply this previous knowledge in order to implement a pruning method. You can choose any of the methods that we studied in [course3](cours3.pdf), but probably the following four are the most straightforward to implement :
-1. Global Pruning, no retrain : simply remove weights with lowest l1 norm, measure accuracy for different pruning ratios
-2. [Learning both Weights and Connections for Efficient Neural Networks](https://arxiv.org/abs/1506.02626) :  apply a retrain after the first global pruning
-3. [Pruning Filters for Efficient ConvNets](https://arxiv.org/abs/1608.08710) : gradually prune and retrain accross layers
-4. [ThiNet](https://arxiv.org/abs/1707.06342): same, but based on the norms of feature maps
+        state = {
+                'net': model.state_dict(),
+                'hyperparam': hparam_currentvalue
+        }
 
-There are several ways to prune, be innovative ! Different ratios, on different layers, different pruning criteria, diffrent ways of finetuning... Play !
+        torch.save(state, 'mybestmodel.pth')
 
-Part 2 - Combining all techniques on CIFAR10 and CIFAR100
+In order to reload this model, first we need to define it. This means we need to fetch the value of the hyperparameter before defining the model and loading the trained parameters. 
+
+        # We load the dictionnary
+        loaded_cpt = torch.load('mybestmodel.pth')
+
+        # Fetch the hyperparam value
+        hparam_bestvalue = loaded_cpt['hyperparam']
+
+        # Define the model 
+        model = MySuperModel(hyperparam = hparam_bestvalue)
+
+        # Finally we can load the state_dict in order to load the trained parameters 
+        model.load_state_dict(loaded_cpt['net'])
+
+        # If you use this model for inference (= no further training), you need to set it into eval mode
+        model.eval()
+
+
+
+Part 1 - Quantization to half and integer precision
 --
-Now, it's your turn to combine everything we have seen so far to start performing some interesting comparisons using the datasets CIFAR10 and / or CIFAR100.
+The goal of this part is to work with one of the models you obtained in Lab Session 1, reload the weights and quantize after training. 
 
-Consider the different factors that can influence the total memory footprint needed to store the network parameters as well as feature maps / activations.
+While converting a model post-training to floating point half-precision is straightforward, converting to integer is more complex because all operators need to be adapted, and dynamic ranges in computations differ (see the [course](course2.pdf))
 
-The key question we are interested in :
+PyTorch has recently introduced a set of tools for quantization to 8bit integer, using specific quantized tensor types, quantized version of operators, as well as utily functions to manage quantization. Please read the following post for a general explanation of [Pytorch quantization features](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/) for quantization. 
 
-**What is the best achievable accuracy with the smallest memory footprint ?**
+While 8-bit quantization in pytorch is still experimental (the features are not very well documented), quantization to 16 bits is already working. 
+You can convert models and tensors to half, by simply doing `.half()`. 
 
-Prepare a presentation for session 5, detailing your methodology and explorations to adress this question. You will have 10 minutes to present, followed by 5 minutes of questions. Good luck !
+Use the following syntax (this can be done either before or after training): 
+    
+        model.half()  # convert all the model parameters to 16 bits half precision
+and in order to perform inference, you should also convert your inputs to half.
 
+What is the impact of post-training quantization on performance of your model(s)  ? 
+
+Part 2 - Quantization to binary
+--
+
+Now we would like to go even further in quantization, by considering only 1 bit for representing weights. 
+
+In this part we will work with [Binary Connect](http://papers.nips.cc/paper/5647-binaryconnect-training-deep-neural-networks-with-b) in pytorch. We presented this method in [the course](cours2.pdf)
+
+Implementing the method from a blank page would probably be too long for this lab session, so will give you the a model with a few empty code blocks to be completed. 
+
+Use the starting point in the file [binaryconnect.py](binaryconnect.py), as well as the paper, to implement binaryconnect. We ask you to implement the *deterministic* version of quantification. 
+
+More details:
+
+We propose an implementation that will use a class `binaryconnect.BC()` that supersets the model that will be binarized. 
+
+Before explaining how this class works internally, here are a few examples on how to use the class :  
+
+        import binaryconnect
+        ### define your model somewhere, let's say it is called "mymodel"
+
+        mymodelbc = binaryconnect.BC(mymodel) ### use this to prepare your model for binarization 
+
+        mymodelbc.model = mymodelbc.model.to(device) # it has to be set for GPU training 
+
+        ### During training (check the algorithm in the course and in the paper to see the exact sequence of operations)
+
+        mymodelbc.binarization() ## This binarizes all weights in the model
+
+        mymodelbc.restore() ###  This reloads the full precision weights
+
+        ### After backprop
+
+        mymodelbc.clip() ## Clip the weights 
+With this information it should be rather clear how to implement the training loop for the Binary Connect algorithm. 
+
+Start by having a look at this [Notebook](Reading_copying_modifying_weights.ipynb), which will show you how to read, copy and write the weights in a pytorch model. 
+
+Now, have a look at the [binaryconnect.py](binaryconnect.py) file to see how the `binaryconnect.BC()` class is implemented. 
+
+- The class defines several internal structures to save the parameters in full precision in `self.save_params`, 
+- The class uses the `self.target_modules` list to store the modules that contain parameters. The items in this list are the module weights, and the corresponding values can be written by used the `.copy_` method of the `.data` property. See the implementation of `self.save_params` function as well as the initialization of the class. 
+- The `self.binarization()` is supposed to first save the full precision weigths by calling `self.save_params`, read the list of target modules, and write a binarized version of the weights in the model using the `self.target_modules` list. 
+- `self.restore()` restores the full precision version by reading them in `self.saved_params` and writing back in the model, again using the `self.target_modules` list. 
+
+Part 3 - CIFAR10 and CIFAR100
+--
+
+Now is the time to start working properly on some real challenging dataset ! The final goal of the project for this course is to explore how to reduce the number of computations and memory requirements for performing inference on CIFAR10 and CIFAR100. So far, we have seen how to explore hyperparameters (in session 1) and how to consider quantization (this session). Same question than for the same presentation : can you explore these concepts with a chosen deep learning architecture, and explore the accuracy / architecture size tradeoff ? 
+
+A few starting points : 
+- Take some time to check out the [state of the art](paperswithcode.com) results that can be obtained on CIFAR10 and CIFAR100. Which architecture did they use ? Did they use any additional data apart from the dataset ? 
+- Experiment with various modern DL networks with quantization while training, using either binaryconnect, or another method such as BWN, XNorNet, while training on CIFAR10
+- Have a look at the winners of the last MicroNet competition. We have not yet introduced all the concepts in the course, but it is still interesting that you begin to familiarize yourself with this litterature. 
+
+Spend some time reading while you launch some large scale training on CIFAR10 and CIFAR100. You will be evaluated at Session 3 and 5 on the work you did so far. 

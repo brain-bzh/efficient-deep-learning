@@ -1,121 +1,129 @@
-Lab Session 2
---
-The objectives of this second lab session are the following:
-- Quantize a neural network post-training
-- Quantize during training using Binary Connect
-- Explore the influence of quantization on performance on a modern DL architecture
+# Lab Session 2
 
-We will perform experiments on CIFAR10  datasets. 
+The objectives of this lab session are the following:
+- Visualize augmented data samples
+- Experiment with Data Augmentation
+- Implement mixup in your training loop
 
+All experiments done on CIFAR10.
 
-Recap - How to reload your previous models
---
-Pytorch has a [page](https://pytorch.org/tutorials/beginner/saving_loading_models.html#saving-loading-model-for-inference) explaining how to save and load models. But here are a few additional details. 
+---
+## Part 1 - Visualization of DA
 
-Most probably, in the last session you explored various architecture hyperparameters. In order to load a model, you need to define the model in the same way that it was defined when training it. 
+Data augmentation (DA) in Pytorch is done when defining the Dataset class. In order to enable DA, the class must accept a transforms argument, which will dynamically modify the original data samples by applying them a function. Most of the time, this function is a composition of several functions. Let's have a look at the default CIFAR10 transforms we have been using so far : 
 
-Let's assume your model definition during training had a single hyperparameter that you explored with various values.
+```python
+from torchvision.datasets import CIFAR10
+import torchvision.transforms as transforms
 
-        model = MySuperModel(hyperparam = hparam_currentvalue)
+transform_train = transforms.Compose([
+    transforms.RandomCrop(32, padding=4),
+    transforms.RandomHorizontalFlip(),
+    transforms.ToTensor(),
+    transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010))
+])
 
-The following code enables you to save the currently trained model (his parameters, it is called a *state dictionary* in pytorch) as well as the current value `hparam_currentvalue` of the hyperparameter.
+transform_test = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010))
+])
 
-        state = {
-                'net': model.state_dict(),
-                'hyperparam': hparam_currentvalue
-        }
+rootdir = './data/cifar10'
 
-        torch.save(state, 'mybestmodel.pth')
+c10train = CIFAR10(rootdir,train=True,download=True,transform=transform_train)
+c10test = CIFAR10(rootdir,train=False,download=True,transform=transform_test)
+```
 
-In order to reload this model, first we need to define it. This means we need to fetch the value of the hyperparameter before defining the model and loading the trained parameters. 
+DA here is done by two random transformations : 
+- [RandomCrop](https://pytorch.org/vision/main/generated/torchvision.transforms.RandomCrop.html), which crops the image at a random location and pads the borders, and 
+- [RandomHorizontalFlip](https://pytorch.org/vision/main/generated/torchvision.transforms.RandomHorizontalFlip.html#torchvision.transforms.RandomHorizontalFlip).
 
-        # We load the dictionnary
-        loaded_cpt = torch.load('mybestmodel.pth')
-
-        # Fetch the hyperparam value
-        hparam_bestvalue = loaded_cpt['hyperparam']
-
-        # Define the model 
-        model = MySuperModel(hyperparam = hparam_bestvalue)
-
-        # Finally we can load the state_dict in order to load the trained parameters 
-        model.load_state_dict(loaded_cpt['net'])
-
-        # If you use this model for inference (= no further training), you need to set it into eval mode
-        model.eval()
-
+A few important notes :
+- ToTensor() converts the images to torch Tensors
+- Normalization is performed so that the input values follow the normal distribution
+- DA is applied only for the training set. For the test set, only normalization is applied
 
 
-Part 1 - Quantization to half and integer precision
---
-The goal of this part is to work with one of the models you obtained in Lab Session 1, reload the weights and quantize after training. 
+In order to visualize, let's define Dataloaders with a small batch, and we will remove Shuffling so that we can always look at the same images. We also remove normalization so that we preserve the pixel values for plotting. 
 
-While converting a model post-training to floating point half-precision is straightforward, converting to integer is more complex because all operators need to be adapted, and dynamic ranges in computations differ (see the [course](course2.pdf))
+```python
+from torchvision.datasets import CIFAR10
+from torch.utils.data.dataloader import DataLoader
 
-PyTorch has recently introduced a set of tools for quantization to 8bit integer, using specific quantized tensor types, quantized version of operators, as well as utily functions to manage quantization. Please read the following post for a general explanation of [Pytorch quantization features](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/) for quantization. 
+import torchvision.transforms as transforms
 
-While 8-bit quantization in pytorch is still experimental (the features are not very well documented), quantization to 16 bits is already working. 
-You can convert models and tensors to half, by simply doing `.half()`. 
+transform_train = transforms.Compose([
+    transforms.RandomCrop(32, padding=4),
+    transforms.RandomHorizontalFlip(),
+    transforms.ToTensor()
+])
 
-Use the following syntax (this can be done either before or after training): 
+rootdir = './data/cifar10'
+
+c10train = CIFAR10(rootdir,train=True,download=True,transform=transform_train)
+
+trainloader = DataLoader(c10train,batch_size=4,shuffle=False) ### Shuffle to False so that we always see the same images
+
+from matplotlib import pyplot as plt 
+
+### Let's do a figure for each batch
+f = plt.figure(figsize=(10,10))
+
+for i,(data,target) in enumerate(trainloader):
     
-        model.half()  # convert all the model parameters to 16 bits half precision
-and in order to perform inference, you should also convert your inputs to half.
+    data = (data.numpy())
+    print(data.shape)
+    plt.subplot(2,2,1)
+    plt.imshow(data[0].swapaxes(0,2).swapaxes(0,1))
+    plt.subplot(2,2,2)
+    plt.imshow(data[1].swapaxes(0,2).swapaxes(0,1))
+    plt.subplot(2,2,3)
+    plt.imshow(data[2].swapaxes(0,2).swapaxes(0,1))
+    plt.subplot(2,2,4)
+    plt.imshow(data[3].swapaxes(0,2).swapaxes(0,1))
 
-What is the impact of post-training quantization on performance of your model(s)  ? 
+    break
 
-Part 2 - Quantization to binary
---
+f.savefig('train_DA.png')
+```
+And you should obtain an image similar to this one : 
 
-Now we would like to go even further in quantization, by considering only 1 bit for representing weights. 
+![Image](train_DA.png)
 
-In this part we will work with [Binary Connect](http://papers.nips.cc/paper/5647-binaryconnect-training-deep-neural-networks-with-b) in pytorch. We presented this method in [the course](cours2.pdf)
+... except that the crops and flips will be different each time you run the code.
 
-Implementing the method from a blank page would probably be too long for this lab session, so will give you the a model with a few empty code blocks to be completed. 
+A few things to try : 
+- Remove one of the two transformations and see the effect
+- Experiment with other transformations, available from  [torchvision.transforms](https://pytorch.org/vision/main/transforms.html#transforms-on-pil-image-and-torch-tensor). 
+- Don't forget that you should not change the image size as a result of transformation. 
+- There are also some popular packages for data augmentations such as albumentations, including a more detailed pytorch tutorial [here](https://albumentations.ai/docs/examples/pytorch_classification/). You can check out more examples of DA strategies there. 
 
-Use the starting point in the file [binaryconnect.py](binaryconnect.py), as well as the paper, to implement binaryconnect. We ask you to implement the *deterministic* version of quantification. 
+---
+## Part 2 - Experiments with DA
+You can now customize DA into your learning pipeline. Don't forget to check that you have normalization in the list of transforms, and to shuffle the train set (we removed those for pedagogical purposes here).
 
-More details:
+The set of DA used here comes from the [repo for CIFAR10](https://github.com/kuangliu/pytorch-cifar/blob/master/main.py) we have been using since the beginning and can achieve close to SOTA, but when trying to reduce parameter count you might be able to boost performances by including more DA.
 
-We propose an implementation that will use a class `binaryconnect.BC()` that supersets the model that will be binarized. 
+---
+## Part 3 - Mixup
 
-Before explaining how this class works internally, here are a few examples on how to use the class :  
+Mixup was introduced in 2017 in [this paper](https://arxiv.org/abs/1710.09412). 
 
-        import binaryconnect
-        ### define your model somewhere, let's say it is called "mymodel"
+A simple way to perform mixup during training is the following procedure. This replaces your usual training loop. 
 
-        mymodelbc = binaryconnect.BC(mymodel) ### use this to prepare your model for binarization 
+For each batch with data and target $X,y$ :
+- Generate another order of data and targets: $X_{perm},y_{perm}$ by permuting the indices
+- Generate a random scalar $\lambda \in [0,1]$. The uniform distribution is a good default choice, obtained by simply doing `lambda = random.random()` from the random standard python library.
+- The mixed-up data is $X_{m} = \lambda X + (1-\lambda)X_{perm}$
+- Zero gradients, forward pass with the mixed up data : $out_m = model(X_{m})$
+- Compute the loss as follows (CE is cross-entropy) : $loss = \lambda CE(out_m,y) + (1-\lambda) CE(out_m,y_{perm})$
+- Backward pass and optimizer step as would be done without mixup.
 
-        mymodelbc.model = mymodelbc.model.to(device) # it has to be set for GPU training 
+You should leave the option to activate mixup or not during an epoch, as performing mixup since the beginning may harm training, depending on architectures and datasets. 
 
-        ### During training (check the algorithm in the course and in the paper to see the exact sequence of operations)
+You will find other ways to do it in the litterature (e.g. sampling $\lambda$ from the distribution $\Gamma(\alpha,\alpha)$ with various values of $\alpha$).  The procedure proposed here the advantage of having no hyperparameters, as $\lambda$ is chosen uniformly in $[0,1]$, which also ensures that some batches will not have mixup.
 
-        mymodelbc.binarization() ## This binarizes all weights in the model
 
-        mymodelbc.restore() ###  This reloads the full precision weights
+Implement this mechanism and see the effect on training on CIFAR10.
 
-        ### After backprop
-
-        mymodelbc.clip() ## Clip the weights 
-With this information it should be rather clear how to implement the training loop for the Binary Connect algorithm. 
-
-Start by having a look at this [Notebook](Reading_copying_modifying_weights.ipynb), which will show you how to read, copy and write the weights in a pytorch model. 
-
-Now, have a look at the [binaryconnect.py](binaryconnect.py) file to see how the `binaryconnect.BC()` class is implemented. 
-
-- The class defines several internal structures to save the parameters in full precision in `self.save_params`, 
-- The class uses the `self.target_modules` list to store the modules that contain parameters. The items in this list are the module weights, and the corresponding values can be written by used the `.copy_` method of the `.data` property. See the implementation of `self.save_params` function as well as the initialization of the class. 
-- The `self.binarization()` is supposed to first save the full precision weigths by calling `self.save_params`, read the list of target modules, and write a binarized version of the weights in the model using the `self.target_modules` list. 
-- `self.restore()` restores the full precision version by reading them in `self.saved_params` and writing back in the model, again using the `self.target_modules` list. 
-
-Part 3 - CIFAR10 and CIFAR100
---
-
-Now is the time to start working properly on some real challenging dataset ! The final goal of the project for this course is to explore how to reduce the number of computations and memory requirements for performing inference on CIFAR10 and CIFAR100. So far, we have seen how to explore hyperparameters (in session 1) and how to consider quantization (this session). Same question than for the same presentation : can you explore these concepts with a chosen deep learning architecture, and explore the accuracy / architecture size tradeoff ? 
-
-A few starting points : 
-- Take some time to check out the [state of the art](paperswithcode.com) results that can be obtained on CIFAR10 and CIFAR100. Which architecture did they use ? Did they use any additional data apart from the dataset ? 
-- Experiment with various modern DL networks with quantization while training, using either binaryconnect, or another method such as BWN, XNorNet, while training on CIFAR10
-- Have a look at the winners of the last MicroNet competition. We have not yet introduced all the concepts in the course, but it is still interesting that you begin to familiarize yourself with this litterature. 
-
-Spend some time reading while you launch some large scale training on CIFAR10 and CIFAR100. You will be evaluated at Session 3 and 5 on the work you did so far. 
+N.B. : there is an important difference between the [actual implementation](https://github.com/facebookresearch/mixup-cifar10/blob/main/train.py#L119) provided by the authors (which correspond more or less to what is described here) and the formula in [the paper](https://arxiv.org/abs/1710.09412) ; targets in the paper are a linear interpolation of the two targets (hence mixed up targets are not one hot), while the implementation performs a linear interpolation of the loss with mixed up data. 
