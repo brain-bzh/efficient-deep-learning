@@ -8,7 +8,7 @@ Here is a detailed schedule, session by session:
 1. Introduction / Refresher on Deep Learning 
    1. [General Intro](intro.pdf) - Why do we need to optimize deep learning ? Introduction of the MicroNet Challenge. 
    2. [Course](cours1.pdf) - Deep Learning and Transfer Learning.
-   3. [Practical session](lab1.md) - introduction to PyTorch, transfer learning. 
+   3. [Practical session](lab1.md) - introduction to PyTorch 
    4. Short project - exploring hyper parameters on a fixed architecture
    5. Presentation of the Challenge Objectives and Rules (Long Project)
 2. Data Augmentation, Regularization 
