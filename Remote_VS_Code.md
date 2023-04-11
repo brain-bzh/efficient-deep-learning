@@ -40,7 +40,7 @@ VS Code used for this tutorial: 1.64.2
     Host              brain1.imt
         User              YOUR_LOGIN
         Compression       yes
-        HostName          pc-elec-XXX.priv.enst-bretagne.fr
+        HostName          fl-tp-br-xxx.imta.fr
 
     Host *.imt
         ProxyCommand ssh YOUR_LOGIN@ssh.telecom-bretagne.eu "/bin/nc `basename %h .imt` %p"
@@ -52,7 +52,7 @@ VS Code used for this tutorial: 1.64.2
     Host              brain1.imt
         User              YOUR_LOGIN
         Compression       yes
-        HostName          pc-elec-XXX.priv.enst-bretagne.fr
+        HostName          fl-tp-br-xxx.imta.fr
 
     Host *.imt
         ProxyCommand C:\Windows\System32\OpenSSH\ssh.exe YOUR_LOGIN@ssh.telecom-bretagne.eu "/bin/nc `basename %h .imt` %p"
@@ -61,5 +61,5 @@ VS Code used for this tutorial: 1.64.2
 5. Select `brain1.imt`
 6. Enter passwords when prompted
 7. If asked about fingerprints, hit `Continue`
-8. You should have a green rectangle with `SSH: pc-elec-XXX` on the bottom left corner of your screen. If you don't or got an error along the way, call the teacher for help.
+8. You should have a green rectangle with `SSH: fl-tp-br-xxx.imta.fr` on the bottom left corner of your screen. If you don't or got an error along the way, call the teacher for help.
 
