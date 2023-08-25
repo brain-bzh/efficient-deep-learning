@@ -7,19 +7,19 @@ Course organisation / Syllabus
 Here is a detailed schedule, session by session: 
 1. Introduction / Refresher on Deep Learning 
    1. [General Intro](intro.pdf) - Why do we need to optimize deep learning ? Introduction of the MicroNet Challenge. 
-   2. [Course](cours1_withnotes.pdf) - Deep Learning and Transfer Learning.
+   2. [Course](slides_withnotes/cours1.pdf) - Deep Learning and Transfer Learning.
    3. [Practical session](lab1.md) - introduction to PyTorch 
    4. Short project - exploring hyper parameters on a fixed architecture
    5. Presentation of the Challenge Objectives and Rules (Long Project)
 2. Data Augmentation, Regularization 
    1. **Short evaluation** on Deep Learning Essentials and CNN layers
-   2. [Course](cours2_withnotes.pdf) - Data Augmentation, Regularization and Self Supervised Learning
+   2. [Course](slides_withnotes/cours2.pdf) - Data Augmentation, Regularization and Self Supervised Learning
    3. [Practical Session](lab2.md) - Data Augmentation
    4. Short project - exploring hyper parameters on a fixed architecture
 3. Quantization
    1. **Short evaluation** on Data Augmentation
    2. **Students presentations** of short project - exploring hyper parameters on a fixed architecture
-   3. [Course](cours3_withnotes.pdf) - Quantifying Deep neural networks
+   3. [Course](slides_withnotes/cours3.pdf) - Quantifying Deep neural networks
    4. [Practical session](lab3.md) - quantification on a small convolutional network 
    5. Long project 1 - Challenge
 4. Pruning
@@ -30,7 +30,7 @@ Here is a detailed schedule, session by session:
 5. Factorization
    1. **Short evaluation** on Pruning
    2. **Students presentations** on current work on Challenge
-   3. [Course](cours5_withnotes.pdf) - Factorizing Deep neural networks
+   3. [Course](slides_withnotes/cours5.pdf) - Factorizing Deep neural networks
    4. Long Project 3 - Challenge
 6. Distillation
    1. **Short evaluation** on Factorization
