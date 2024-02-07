@@ -1,6 +1,5 @@
 # Computer assignation
 Every group will be assigned a computer with a GPU for the whole course.
-[Work groups organization](https://docs.google.com/document/d/1RhU58oDF8zuCu3yXcQzmQn7ZCacSuL8YbmbcFwi6sSg/edit?usp=sharing)
 
 # Launching a script on the machines
 1. Follow one of the two step-by-step guides below to see how to connect to these computers remotely using VS code, either on [Campux Machines (recommended)](#remote-vs-code-campux-machines) or on your [Personal Machines (advanced)](#remote-vs-code-personal-machines).
