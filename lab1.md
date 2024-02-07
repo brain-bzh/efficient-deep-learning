@@ -147,8 +147,8 @@ In order to reload this model, first we need to define it. This means we need to
 Prepare a presentation (10 minutes + 5 minutes question) with the following content : 
 - Description of the paper that has been attributed to you
 - Hyperparameter exploration strategy 
-- Results on CIFAR10 subset, focusing on illustrating the **compromises between model size and performance**
+- Results on CIFAR10, focusing on illustrating the **compromises between model size and performance**
 
-If you are ahead in time, you can perform similar experiments on the full CIFAR-10 and CIFAR-100, but be aware that each run (e.g. 350 epochs) might take as long as 3 hours.
+If you are ahead in time, you can perform similar experiments on CIFAR-100, but be aware that each run (e.g. 350 epochs) might take as long as 3 hours.
 
 **N.B. It is very important that you consider the models in the kuangliu repository, as they have been dimensioned for the CIFAR-10 dataset. Respective models taken from other sources may be have been optimized for other datasets and therefore not adapted (over or underparametrized) to CIFAR-10.**
