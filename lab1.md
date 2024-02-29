@@ -144,7 +144,7 @@ In order to reload this model, first we need to define it. This means we need to
 
 ## Part 4 - Project
 
-Prepare a presentation (10 minutes + 5 minutes question) with the following content : 
+Prepare a presentation (7 minutes + 3 minutes question) with the following content : 
 - Description of the paper that has been attributed to you
 - Hyperparameter exploration strategy 
 - Results on CIFAR10, focusing on illustrating the **compromises between model size and performance**
