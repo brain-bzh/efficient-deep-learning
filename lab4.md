@@ -33,5 +33,5 @@ The key question we are interested in :
 
 **What is the best achievable accuracy with the smallest memory footprint ?**
 
-Prepare a presentation for session 5, detailing your methodology and explorations to adress this question. You will have 10 minutes to present, followed by 5 minutes of questions. Good luck !
+Prepare a presentation for session 5, detailing your methodology and explorations to adress this question. You will have 7 minutes to present, followed by 3 minutes of questions. Good luck !
 
