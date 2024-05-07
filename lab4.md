@@ -27,11 +27,16 @@ Part 2 - Combining all techniques on CIFAR10 and CIFAR100
 --
 Now, it's your turn to combine everything we have seen so far to start performing some interesting comparisons using the datasets CIFAR10 and / or CIFAR100.
 
-Consider the different factors that can influence the total memory footprint needed to store the network parameters as well as feature maps / activations.
+Consider the different factors that can influence the number of parameters and the number of computations needed.
 
-The key question we are interested in :
+The final goal of the course work is to **minimize the [Micronet Score]((https://github.com/brain-bzh/efficient-deep-learning/blob/master/micronet-ressources/readme_score.md)**. 
 
-**What is the best achievable accuracy with the smallest memory footprint ?**
 
-Prepare a presentation for session 5, detailing your methodology and explorations to adress this question. You will have 7 minutes to present, followed by 3 minutes of questions. Good luck !
-
+Prepare a presentation for session 5 : 
+- Detail your experiments : hyperparameters (learning rate, scheduling, etc...)
+- Detail your techniques : architecture search and changes (depth, width, ...), data augmentation, pruning, quantization, ..
+- Calculate the micronet scores of your architectures
+- Summarize your results on a plot with accuracy as a function of the Micronet Score (with the 90% limit). 
+- You have to do that in 10 minutes, including questions.
+- 
+Good luck ! 
