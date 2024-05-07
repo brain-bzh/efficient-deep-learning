@@ -38,5 +38,4 @@ Prepare a presentation for session 5 :
 - Calculate the micronet scores of your architectures
 - Summarize your results on a plot with accuracy as a function of the Micronet Score (with the 90% limit). 
 - You have to do that in 10 minutes, including questions.
-- 
 Good luck ! 
