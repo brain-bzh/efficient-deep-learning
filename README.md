@@ -41,8 +41,8 @@ Here is a detailed schedule, session by session:
    2. [Course](cours7.pdf) - Embedded Software and Hardware for Deep Learning
    3. Long Project 5 - Challenge
 8. Final Session
-   1. Long Project 6 - Challenge
-   2. **Students presentations** - Challenge final results
+   1. **Students presentations** - Challenge final results
+   2. Students feedback
 
 What is expected for the Long Project
 --
