@@ -144,9 +144,9 @@ In order to reload this model, first we need to define it. This means we need to
 
 ## Part 4 - Project
 
-Prepare a presentation (7 minutes + 3 minutes question) with the following content : 
+Prepare a presentation  with the following content (~15') : 
 - Description of the paper that has been attributed to you
-- Hyperparameter exploration strategy 
+- Hyperparameters 
 - Results on CIFAR10, focusing on illustrating the **compromises between model size and performance**
 
 If you are ahead in time, you can perform similar experiments on CIFAR-100, but be aware that each run (e.g. 350 epochs) might take as long as 3 hours.
