@@ -1,5 +1,5 @@
 # Lab Session 4
---
+
 The objectives of this third lab session is to perform experiments using pruning methods.
 
 Part 1
@@ -23,19 +23,26 @@ The goal of today's session is to apply this previous knowledge in order to impl
 
 There are several ways to prune, be innovative ! Different ratios, on different layers, different pruning criteria, diffrent ways of finetuning... Play !
 
-Part 2 - Combining all techniques on CIFAR10 and CIFAR100
+Part 2 - Combining all techniques on CIFAR10.
 --
-Now, it's your turn to combine everything we have seen so far to start performing some interesting comparisons using the datasets CIFAR10 and / or CIFAR100.
+Now, it's your turn to combine everything we have seen so far to start performing some interesting comparisons using the datasets CIFAR10. The goal is to design and train a network that **achieves 90% accuracy on CIFAR10**, while having the **lowest possible score**.
 
-Consider the different factors that can influence the number of parameters and the number of computations needed.
+$$\text{score} =\underset{param}{\underbrace{\dfrac{[1-(p_s+p_u)]\dfrac{q_w}{32}w}{5.6\cdot10^6}}} + \underset{ops}{\underbrace{\dfrac{(1-p_s)\dfrac{\max(q_w,q_a)}{32}f}{8.3\cdot10^8}}} $$
 
-The final goal of the course work is to **minimize the [Micronet Score]((https://github.com/brain-bzh/efficient-deep-learning/blob/master/micronet-ressources/readme_score.md)**. 
+Where:
+- $p_s$: structured pruning
+- $p_u$: unstructured pruning
+- $q_w$: quantization of weights
+- $q_a$: quantization of activations
+- $w$: number of weights
+- $f$: number of floating point operations
+- $5.6\cdot10^6$ and $8.3\cdot10^8$ are the reference param and ops scores of the ResNet18 network in half precision.
 
+Prepare a presentation for session 5, detailing your methodology and explorations. You will have 7 minutes to present, followed by 3 minutes of questions.
 
-Prepare a presentation for session 5 : 
-- Detail your experiments : hyperparameters (learning rate, scheduling, etc...)
-- Detail your techniques : architecture search and changes (depth, width, ...), data augmentation, pruning, quantization, ..
-- Calculate the micronet scores of your architectures
-- Summarize your results on a plot with accuracy as a function of the Micronet Score (with the 90% limit). 
-- You have to do that in 10 minutes, including questions.
-Good luck ! 
+  - Detail your experiments
+    - Hyperparameters (learning rate, scheduling, ...)
+  - Detail your techniques
+    - Architecture search and changes (depth, width, ...), data augmentation, pruning, quantization, ...
+  - Calculate the scores of your architectures
+  - Summarize your results on a plot with accuracy as a function of the score (with the 90% limit).
