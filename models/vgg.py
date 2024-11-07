@@ -16,7 +16,7 @@ class VGG(nn.Module):
         
         super(VGG, self).__init__()
         self.features = self._make_layers(cfg[vgg_name])
-        self.classifier = nn.Linear(512, 100)
+        self.classifier = nn.Linear(512, 10)
 
     def forward(self, x):
         out = self.features(x)

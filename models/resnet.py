@@ -65,7 +65,7 @@ class Bottleneck(nn.Module):
 
 
 class ResNet(nn.Module):
-    def __init__(self, block, num_blocks, num_classes=100,fmaps_repeat=64):
+    def __init__(self, block, num_blocks, num_classes=10,fmaps_repeat=64):
         super(ResNet, self).__init__()
         self.in_planes = fmaps_repeat
         self.fmaps_repeat = fmaps_repeat
