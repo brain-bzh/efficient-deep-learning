@@ -29,7 +29,7 @@ The following code enables you to save the currently trained model (his paramete
 
 In order to reload this model, first we need to define it. This means we need to fetch the value of the hyperparameter before defining the model and loading the trained parameters.
 
-        # We load the dictionnary
+        # We load the dictionary
         loaded_cpt = torch.load('mybestmodel.pth')
 
         # Fetch the hyperparam value
@@ -108,7 +108,7 @@ Now, have a look at the [binaryconnect.py](binaryconnect.py) file to see how the
 - The `self.binarization()` is supposed to first save the full precision weigths by calling `self.save_params`, read the list of target modules, and write a binarized version of the weights in the model using the `self.target_modules` list.
 - `self.restore()` restores the full precision version by reading them in `self.saved_params` and writing back in the model, again using the `self.target_modules` list.
 
-Part 3 - CIFAR10 and CIFAR100
+Part 3 - Application to CIFAR10
 --
 
 Now is the time to start working properly on some real challenging dataset ! The final goal of the project for this course is to explore how to reduce the number of computations and memory requirements for performing inference on CIFAR10. So far, we have seen how to explore hyperparameters (in session 1), to use data augmentation (session 2) and how to consider quantization (this session). Same question than for the first presentation : can you explore these concepts with a chosen deep learning architecture, and explore the accuracy / architecture size tradeoff ?
