@@ -28,7 +28,7 @@ transform_test = transforms.Compose([
     transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010))
 ])
 
-rootdir = './data/cifar10'
+rootdir = '/opt/img/effdl-cifar10/'
 
 c10train = CIFAR10(rootdir,train=True,download=True,transform=transform_train)
 c10test = CIFAR10(rootdir,train=False,download=True,transform=transform_test)
@@ -58,7 +58,7 @@ transform_train = transforms.Compose([
     transforms.ToTensor()
 ])
 
-rootdir = './data/cifar10'
+rootdir = '/opt/img/effdl-cifar10/'
 
 c10train = CIFAR10(rootdir,train=True,download=True,transform=transform_train)
 
