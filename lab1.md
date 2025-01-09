@@ -42,8 +42,8 @@ transform_test = transforms.Compose([
     normalize_scratch,
 ])
 
-### The data from CIFAR10 will be downloaded in the following folder
-rootdir = './data/cifar10'
+### The data from CIFAR10 are already downloaded in the following folder
+rootdir = '/opt/img/effdl-cifar10/'
 
 c10train = CIFAR10(rootdir,train=True,download=True,transform=transform_train)
 c10test = CIFAR10(rootdir,train=False,download=True,transform=transform_test)
@@ -81,7 +81,7 @@ We will now define a state of the art deep model and train it from scratch. Chec
 
 ### TASK 1. Train a model from scratch
 
-Choose a model among the following ones :
+From the following [directory](https://github.com/kuangliu/pytorch-cifar), which contains models adapted to the CIFAR10 dataset, choose a model among the following ones :
 - ResNet
 - PreActResNet
 - DenseNet
@@ -149,4 +149,4 @@ For session 3, prepare a presentation (7 minutes + 3 minutes questions) with the
 - Hyperparameter exploration strategy
 - Results on CIFAR10, focusing on illustrating the **compromises between model size and performance**
 
-**N.B. It is very important that you consider the models in the kuangliu repository, as they have been dimensioned for the CIFAR-10 dataset. Respective models taken from other sources may be have been optimized for other datasets and therefore not adapted (over or underparametrized) to CIFAR-10.**
+**N.B. It is very important that you use the models in the [kuangliu repository](https://github.com/kuangliu/pytorch-cifar), as they have been dimensioned for the CIFAR-10 dataset. Respective models taken from other sources may be have been optimized for other datasets and therefore not adapted (over or underparametrized) to CIFAR-10.**
