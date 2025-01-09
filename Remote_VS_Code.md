@@ -1,31 +1,27 @@
-# Computer assignation
+co# Computer assignation
 Every group will be assigned a computer with a GPU for the whole course.
 
 # Launching a script on the machines
-1. Follow one of the two step-by-step guides below to see how to connect to these computers remotely using VS code, either on [Campux Machines (recommended)](#remote-vs-code-campux-machines) or on your [Personal Machines (advanced)](#remote-vs-code-personal-machines).
+1. Follow one of the two step-by-step guides below to see how to connect to these computers remotely using VS code, either on [Campux Machines (recommended)](#remote-vs-code-campux-machines) or on your [Personal Machines (advanced)](#remote-vs-code-personal-machines). 
 2. Once you are connected remotely, open a terminal window in VS Code.
-3. Create your own venv :
+3. Activate the python environment ``effdl-venv`` (**to be done at each connection!**):
 ```bash
-cd /users/local
-mkdir username
-cd username
-python3 -m venv myvenv
-source ./myvenv/bin/activate # activate the created environment, to be done at each connection
-pip install torch --cache-dir . # important not to store cache in your home
-# and install other necessary libraries (torchvision, tqdm...)
-
+source /opt/img/effdl-venv/bin/activate
 ```
 4. Run your script: `python3 myscript.py`
 
-# Data storage
+# Data storage 
 By default you have access to your `/home` directory from the school, but as it is on the network it will be slower. 
 
 In order to have a faster data access, create a directory in `/users/local` 
 Remember this is an internal hard drive with limited capacity, and should only be used for temporary results. Always save your valuable code / results in a secure place. 
 
-For training networks, the datasets SHOULD be stored in `/users/local/xxxx` , otherwise training will be massively slowed down. 
-
 When saving network weights (checkpoints, in ‘pt’ or ‘pth’ format) , also use `/users/local` as they can be very large files. 
+
+### CIFAR10 Dataset
+In this course you will be using the **CIFAR10** dataset to train and test your model. We have downloaded CIFAR10 in the following folder `/opt/img/effdl-cifar10/`
+
+Remember to specify this path when you need to access the dataset (instead of dowloading it from scratch!)
 
 
 # Remote VS Code (Campux Machines)
