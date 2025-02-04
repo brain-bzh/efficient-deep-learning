@@ -37,7 +37,7 @@ VS Code used for this tutorial: 1.64.2
 5. If asked about fingerprints, hit `Continue`
 6. You should have a green rectangle with `SSH: fl-tp-br-xxx` on the bottom left corner of your screen. If you don't or got an error along the way, call the teacher for help.
 
-## Remote VS Code (Personal Machines)
+## Remote VS Code (Personal Machines, only if connected to eduroam or VPN!!)
 VS Code used for this tutorial: 1.64.2
 
 1. Install an [OpenSSH compatible SSH client](https://code.visualstudio.com/docs/remote/troubleshooting#_installing-a-supported-ssh-client)
@@ -49,9 +49,7 @@ VS Code used for this tutorial: 1.64.2
         User              YOUR_LOGIN
         Compression       yes
         HostName          fl-tp-br-xxx.imta.fr
-
-    Host *.imt
-        ProxyCommand ssh YOUR_LOGIN@ssh.telecom-bretagne.eu "/bin/nc `basename %h .imt` %p"
+   
     ```
 
     - On Windows, add these lines to the file (**replace YOUR_LOGIN by your own username**):
@@ -62,8 +60,6 @@ VS Code used for this tutorial: 1.64.2
         Compression       yes
         HostName          fl-tp-br-xxx.imta.fr
 
-    Host *.imt
-        ProxyCommand C:\Windows\System32\OpenSSH\ssh.exe YOUR_LOGIN@ssh.telecom-bretagne.eu "/bin/nc `basename %h .imt` %p"
     ```
 4. Hit F1 key and go to `Remote-SSH: Connect To Host...`
 5. Select `brain1.imt`
@@ -71,7 +67,10 @@ VS Code used for this tutorial: 1.64.2
 7. If asked about fingerprints, hit `Continue`
 8. You should have a green rectangle with `SSH: fl-tp-br-xxx.imta.fr` on the bottom left corner of your screen. If you don't or got an error along the way, call the teacher for help.
 
---------------------------------------------------------------------------------
+
+***
+
+***
 
 # If you want to use your own machine wih GPUs (not recommended)
 
