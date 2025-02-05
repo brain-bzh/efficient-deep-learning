@@ -32,10 +32,10 @@ VS Code used for this tutorial: 1.64.2
 
 1. Install VS Code Extension named `Remote Development`.
 2. Hit F1 key and go to `Remote-SSH: Connect To Host...`
-3. Enter your pc id: `fl-tp-br-xxx.imta.fr`
+3. Enter your pc id: `sl-tp-br-xxx.imta.fr`
 4. Enter your password when prompted
 5. If asked about fingerprints, hit `Continue`
-6. You should have a green rectangle with `SSH: fl-tp-br-xxx` on the bottom left corner of your screen. If you don't or got an error along the way, call the teacher for help.
+6. You should have a green rectangle with `SSH: sl-tp-br-xxx` on the bottom left corner of your screen. If you don't or got an error along the way, call the teacher for help.
 
 ## Remote VS Code (Personal Machines, only if connected to eduroam or VPN!!)
 VS Code used for this tutorial: 1.64.2
@@ -48,7 +48,7 @@ VS Code used for this tutorial: 1.64.2
     Host              brain1.imt
         User              YOUR_LOGIN
         Compression       yes
-        HostName          fl-tp-br-xxx.imta.fr
+        HostName          sl-tp-br-xxx.imta.fr
    
     ```
 
@@ -58,14 +58,14 @@ VS Code used for this tutorial: 1.64.2
     Host              brain1.imt
         User              YOUR_LOGIN
         Compression       yes
-        HostName          fl-tp-br-xxx.imta.fr
+        HostName          sl-tp-br-xxx.imta.fr
 
     ```
 4. Hit F1 key and go to `Remote-SSH: Connect To Host...`
 5. Select `brain1.imt`
 6. Enter passwords when prompted
 7. If asked about fingerprints, hit `Continue`
-8. You should have a green rectangle with `SSH: fl-tp-br-xxx.imta.fr` on the bottom left corner of your screen. If you don't or got an error along the way, call the teacher for help.
+8. You should have a green rectangle with `SSH: sl-tp-br-xxx.imta.fr` on the bottom left corner of your screen. If you don't or got an error along the way, call the teacher for help.
 
 
 ***
