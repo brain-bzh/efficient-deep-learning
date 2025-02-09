@@ -1,0 +1,3 @@
+[submodule "LAB/LAB1/pytorch-cifar"]
+	path = LAB/LAB1/pytorch-cifar
+	url = https://github.com/kuangliu/pytorch-cifar.git
