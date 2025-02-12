@@ -1,7 +1,78 @@
-## General instructions
-In this course, we will use pytorch for Deep Learning. Deep Learning benefits highly from acceleration using a Graphical Processing Unit (GPU), so it is recommended to use the GPU if you have one. If you don't, you should still be able to run basic tests on your machine without GPU, and you will have access to computers with GPUs starting from course 2. 
 
-!! Note that these steps are just recommended guidelines, but there may be a few specifics depending on your system. In particular, if you already have a working python installation, you don't need to install it again.
+## General instructions
+In this course, we will use pytorch for Deep Learning. Deep Learning benefits highly from acceleration using a Graphical Processing Unit (GPU). You will have access to computers with GPUs either from Campux Machines ( = any machine from the school that you can connect to using your IMT credentials. That includes the machines in the classroom) or from your Personal Laptop. In the machine with GPUs you will be using, we already have downloaded the dataset you need and installed pytorch and some other useful libraries in the ``effdl-venv`` virtual environment.
+
+**Every binome will be assigned a computer with a GPU for the whole course.**
+
+## Launching a script on the machines
+1. Follow one of the two step-by-step guides below to see how to connect to these computers remotely using VS code, either on [Campux Machines (recommended)](#remote-vs-code-campux-machines) or on your [Personal Machines (advanced)](#remote-vs-code-personal-machines). 
+2. Once you are connected remotely, open a terminal window in VS Code.
+3. Activate the python environment ``effdl-venv`` (**to be done at each connection!**):
+```bash
+source /opt/img/effdl-venv/bin/activate
+```
+4. Run your script: `python3 myscript.py`
+
+## Data storage 
+By default you have access to your `/home` directory from the school, but as it is on the network it will be slower. 
+
+In order to have a faster data access, create a directory in `/users/local` 
+Remember this is an internal hard drive with limited capacity, and should only be used for temporary results. Always save your valuable code / results in a secure place. 
+
+When saving network weights (checkpoints, in ‘pt’ or ‘pth’ format) , also use `/users/local` as they can be very large files. 
+
+### CIFAR10 Dataset
+In this course you will be using the **CIFAR10** dataset to train and test your model. We have downloaded CIFAR10 in the following folder: `/opt/img/effdl-cifar10/`
+
+Remember to specify this path when you need to access the dataset (instead of dowloading it from scratch!)
+
+
+## Remote VS Code (Campux Machines)
+VS Code used for this tutorial: 1.64.2
+
+1. Install VS Code Extension named `Remote Development`.
+2. Hit F1 key and go to `Remote-SSH: Connect To Host...`
+3. Enter your pc id: `sl-tp-br-xxx.imta.fr`
+4. Enter your password when prompted
+5. If asked about fingerprints, hit `Continue`
+6. You should have a green rectangle with `SSH: sl-tp-br-xxx` on the bottom left corner of your screen. If you don't or got an error along the way, call the teacher for help.
+
+## Remote VS Code (Personal Machines, only if connected to eduroam or VPN!!)
+VS Code used for this tutorial: 1.64.2
+
+1. Install an [OpenSSH compatible SSH client](https://code.visualstudio.com/docs/remote/troubleshooting#_installing-a-supported-ssh-client)
+2. Install VS Code Extension named `Remote Development`.
+3. Hit F1 key and go to `Remote-SSH: Open Configuration File...`. Click on the first line proposed.
+    - On Linux or Mac, add these lines to the file (**replace YOUR_LOGIN by your own username**): 
+    ```
+    Host              brain1.imt
+        User              YOUR_LOGIN
+        Compression       yes
+        HostName          sl-tp-br-xxx.imta.fr
+   
+    ```
+
+    - On Windows, add these lines to the file (**replace YOUR_LOGIN by your own username**):
+
+    ```
+    Host              brain1.imt
+        User              YOUR_LOGIN
+        Compression       yes
+        HostName          sl-tp-br-xxx.imta.fr
+
+    ```
+4. Hit F1 key and go to `Remote-SSH: Connect To Host...`
+5. Select `brain1.imt`
+6. Enter passwords when prompted
+7. If asked about fingerprints, hit `Continue`
+8. You should have a green rectangle with `SSH: sl-tp-br-xxx.imta.fr` on the bottom left corner of your screen. If you don't or got an error along the way, call the teacher for help.
+
+
+***
+
+***
+
+# If you want to use your own machine wih GPUs (not recommended)
 
 First, you need to check whether your computer has a NVIDIA GPU or not. If it does, you will need to install CUDA, and specify the CUDA version when installing pytorch. 
 
@@ -72,3 +143,4 @@ Try and run this code which should display a randomly initialized tensor.
 
 ### To install Python packages
 For example, install matplotlib using a terminal : `pip install matplotlib`
+

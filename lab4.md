@@ -1,5 +1,5 @@
 # Lab Session 4
---
+
 The objectives of this third lab session is to perform experiments using pruning methods.
 
 Part 1
@@ -23,15 +23,26 @@ The goal of today's session is to apply this previous knowledge in order to impl
 
 There are several ways to prune, be innovative ! Different ratios, on different layers, different pruning criteria, diffrent ways of finetuning... Play !
 
-Part 2 - Combining all techniques on CIFAR10 and CIFAR100
+Part 2 - Combining all techniques on CIFAR10.
 --
-Now, it's your turn to combine everything we have seen so far to start performing some interesting comparisons using the datasets CIFAR10 and / or CIFAR100.
+Now, it's your turn to combine everything we have seen so far to start performing some interesting comparisons using the datasets CIFAR10. The goal is to design and train a network that **achieves 90% accuracy on CIFAR10**, while having the **lowest possible score**.
 
-Consider the different factors that can influence the total memory footprint needed to store the network parameters as well as feature maps / activations.
+$$\text{score} =\underset{param}{\underbrace{\dfrac{[1-(p_s+p_u)]\dfrac{q_w}{32}w}{5.6\cdot10^6}}} + \underset{ops}{\underbrace{\dfrac{(1-p_s)\dfrac{\max(q_w,q_a)}{32}f}{8.3\cdot10^8}}} $$
 
-The key question we are interested in :
+Where:
+- $p_s$: structured pruning
+- $p_u$: unstructured pruning
+- $q_w$: quantization of weights
+- $q_a$: quantization of activations
+- $w$: number of weights
+- $f$: number of floating point operations
+- $5.6\cdot10^6$ and $8.3\cdot10^8$ are the reference param and ops scores of the ResNet18 network in half precision.
 
-**What is the best achievable accuracy with the smallest memory footprint ?**
+Prepare a presentation for session 5, detailing your methodology and explorations. You will have 7 minutes to present, followed by 3 minutes of questions.
 
-Prepare a presentation for session 5, detailing your methodology and explorations to adress this question. You will have 10 minutes to present, followed by 5 minutes of questions. Good luck !
-
+  - Detail your experiments
+    - Hyperparameters (learning rate, scheduling, ...)
+  - Detail your techniques
+    - Architecture search and changes (depth, width, ...), data augmentation, pruning, quantization, ...
+  - Calculate the scores of your architectures
+  - Summarize your results on a plot with accuracy as a function of the score (with the 90% limit).
