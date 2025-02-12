@@ -1,0 +1,22 @@
+Optimizer:  <class 'torch.optim.sgd.SGD'>
+Epoch 1: Train Loss: 1.9285, Train Acc: 29.48%, Test Acc: 38.82%  Learning Rate: 0.001
+Epoch 2: Train Loss: 1.5934, Train Acc: 41.41%, Test Acc: 44.91%  Learning Rate: 0.001
+Epoch 3: Train Loss: 1.4342, Train Acc: 47.26%, Test Acc: 50.65%  Learning Rate: 0.001
+Epoch 4: Train Loss: 1.3210, Train Acc: 52.09%, Test Acc: 53.87%  Learning Rate: 0.001
+Epoch 5: Train Loss: 1.2306, Train Acc: 55.49%, Test Acc: 57.67%  Learning Rate: 0.001
+Epoch 6: Train Loss: 1.1493, Train Acc: 58.55%, Test Acc: 55.23%  Learning Rate: 0.001
+Epoch 7: Train Loss: 1.0828, Train Acc: 61.25%, Test Acc: 58.83%  Learning Rate: 0.001
+Epoch 8: Train Loss: 1.0217, Train Acc: 63.53%, Test Acc: 61.14%  Learning Rate: 0.001
+Epoch 9: Train Loss: 0.9702, Train Acc: 65.51%, Test Acc: 54.59%  Learning Rate: 0.001
+Epoch 10: Train Loss: 0.9276, Train Acc: 67.09%, Test Acc: 65.88%  Learning Rate: 0.001
+Epoch 11: Train Loss: 0.8880, Train Acc: 68.71%, Test Acc: 66.95%  Learning Rate: 0.001
+Epoch 12: Train Loss: 0.8562, Train Acc: 69.58%, Test Acc: 67.70%  Learning Rate: 0.001
+Epoch 13: Train Loss: 0.8221, Train Acc: 70.85%, Test Acc: 68.15%  Learning Rate: 0.001
+Epoch 14: Train Loss: 0.7911, Train Acc: 71.80%, Test Acc: 68.72%  Learning Rate: 0.001
+Epoch 15: Train Loss: 0.7651, Train Acc: 73.01%, Test Acc: 71.93%  Learning Rate: 0.001
+Epoch 16: Train Loss: 0.7371, Train Acc: 74.03%, Test Acc: 68.09%  Learning Rate: 0.001
+Epoch 17: Train Loss: 0.7146, Train Acc: 74.73%, Test Acc: 72.86%  Learning Rate: 0.001
+Epoch 18: Train Loss: 0.6855, Train Acc: 75.97%, Test Acc: 73.10%  Learning Rate: 0.001
+Epoch 19: Train Loss: 0.6621, Train Acc: 76.69%, Test Acc: 74.66%  Learning Rate: 0.001
+Epoch 20: Train Loss: 0.6407, Train Acc: 77.44%, Test Acc: 73.45%  Learning Rate: 0.001
+Training complete my boss
