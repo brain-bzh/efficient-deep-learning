@@ -1,0 +1,56 @@
+Epoch 1: Train Loss: 1.5155, Train Acc: 44.21%, Test Acc: 47.73%  Learning Rate: 0.001
+Epoch 2: Train Loss: 1.0397, Train Acc: 62.93%, Test Acc: 50.55%  Learning Rate: 0.001
+Epoch 3: Train Loss: 0.8544, Train Acc: 70.03%, Test Acc: 70.99%  Learning Rate: 0.001
+Epoch 4: Train Loss: 0.7279, Train Acc: 74.92%, Test Acc: 72.90%  Learning Rate: 0.001
+Epoch 5: Train Loss: 0.6429, Train Acc: 77.77%, Test Acc: 63.39%  Learning Rate: 0.001
+Epoch 6: Train Loss: 0.5807, Train Acc: 80.11%, Test Acc: 76.85%  Learning Rate: 0.001
+Epoch 7: Train Loss: 0.5330, Train Acc: 82.03%, Test Acc: 72.88%  Learning Rate: 0.001
+LEARNING RATE UPDATE TO:0.0001
+Epoch 8: Train Loss: 0.4973, Train Acc: 82.89%, Test Acc: 75.39%  Learning Rate: 0.0001
+Epoch 9: Train Loss: 0.3420, Train Acc: 88.37%, Test Acc: 88.04%  Learning Rate: 0.0001
+Epoch 10: Train Loss: 0.2915, Train Acc: 90.09%, Test Acc: 88.55%  Learning Rate: 0.0001
+Epoch 11: Train Loss: 0.2674, Train Acc: 90.91%, Test Acc: 88.99%  Learning Rate: 0.0001
+Epoch 12: Train Loss: 0.2485, Train Acc: 91.53%, Test Acc: 88.90%  Learning Rate: 0.0001
+Epoch 13: Train Loss: 0.2336, Train Acc: 92.02%, Test Acc: 89.53%  Learning Rate: 0.0001
+Epoch 14: Train Loss: 0.2212, Train Acc: 92.38%, Test Acc: 89.35%  Learning Rate: 0.0001
+Epoch 15: Train Loss: 0.2064, Train Acc: 93.01%, Test Acc: 89.49%  Learning Rate: 0.0001
+Epoch 16: Train Loss: 0.1961, Train Acc: 93.28%, Test Acc: 89.93%  Learning Rate: 0.0001
+Epoch 17: Train Loss: 0.1837, Train Acc: 93.64%, Test Acc: 89.91%  Learning Rate: 0.0001
+LEARNING RATE UPDATE TO:1e-05
+Epoch 18: Train Loss: 0.1713, Train Acc: 94.18%, Test Acc: 89.66%  Learning Rate: 1e-05
+Epoch 19: Train Loss: 0.1431, Train Acc: 95.15%, Test Acc: 90.57%  Learning Rate: 1e-05
+Epoch 20: Train Loss: 0.1311, Train Acc: 95.63%, Test Acc: 90.73%  Learning Rate: 1e-05
+Epoch 21: Train Loss: 0.1276, Train Acc: 95.74%, Test Acc: 90.68%  Learning Rate: 1e-05
+Epoch 22: Train Loss: 0.1239, Train Acc: 95.90%, Test Acc: 90.78%  Learning Rate: 1e-05
+Epoch 23: Train Loss: 0.1192, Train Acc: 96.07%, Test Acc: 90.73%  Learning Rate: 1e-05
+LEARNING RATE UPDATE TO:1.0000000000000002e-06
+Epoch 24: Train Loss: 0.1176, Train Acc: 96.04%, Test Acc: 90.74%  Learning Rate: 1.0000000000000002e-06
+Epoch 25: Train Loss: 0.1128, Train Acc: 96.27%, Test Acc: 90.85%  Learning Rate: 1.0000000000000002e-06
+LEARNING RATE UPDATE TO:1.0000000000000002e-07
+Epoch 26: Train Loss: 0.1143, Train Acc: 96.28%, Test Acc: 90.88%  Learning Rate: 1.0000000000000002e-07
+Epoch 27: Train Loss: 0.1099, Train Acc: 96.33%, Test Acc: 90.79%  Learning Rate: 1.0000000000000002e-07
+LEARNING RATE UPDATE TO:1.0000000000000004e-08
+Epoch 28: Train Loss: 0.1118, Train Acc: 96.29%, Test Acc: 90.86%  Learning Rate: 1.0000000000000004e-08
+Epoch 29: Train Loss: 0.1105, Train Acc: 96.41%, Test Acc: 90.70%  Learning Rate: 1.0000000000000004e-08
+Epoch 30: Train Loss: 0.1103, Train Acc: 96.35%, Test Acc: 90.85%  Learning Rate: 1.0000000000000004e-08
+Epoch 31: Train Loss: 0.1118, Train Acc: 96.29%, Test Acc: 90.92%  Learning Rate: 1.0000000000000004e-08
+Epoch 32: Train Loss: 0.1130, Train Acc: 96.21%, Test Acc: 90.87%  Learning Rate: 1.0000000000000004e-08
+Epoch 33: Train Loss: 0.1116, Train Acc: 96.32%, Test Acc: 90.81%  Learning Rate: 1.0000000000000004e-08
+Epoch 34: Train Loss: 0.1119, Train Acc: 96.40%, Test Acc: 90.85%  Learning Rate: 1.0000000000000004e-08
+Epoch 35: Train Loss: 0.1098, Train Acc: 96.35%, Test Acc: 90.87%  Learning Rate: 1.0000000000000004e-08
+Epoch 36: Train Loss: 0.1130, Train Acc: 96.25%, Test Acc: 90.90%  Learning Rate: 1.0000000000000004e-08
+Epoch 37: Train Loss: 0.1110, Train Acc: 96.35%, Test Acc: 90.75%  Learning Rate: 1.0000000000000004e-08
+Epoch 38: Train Loss: 0.1130, Train Acc: 96.21%, Test Acc: 90.70%  Learning Rate: 1.0000000000000004e-08
+Epoch 39: Train Loss: 0.1104, Train Acc: 96.30%, Test Acc: 90.75%  Learning Rate: 1.0000000000000004e-08
+Epoch 40: Train Loss: 0.1138, Train Acc: 96.30%, Test Acc: 90.81%  Learning Rate: 1.0000000000000004e-08
+Epoch 41: Train Loss: 0.1123, Train Acc: 96.25%, Test Acc: 90.80%  Learning Rate: 1.0000000000000004e-08
+Epoch 42: Train Loss: 0.1112, Train Acc: 96.31%, Test Acc: 90.86%  Learning Rate: 1.0000000000000004e-08
+Epoch 43: Train Loss: 0.1113, Train Acc: 96.27%, Test Acc: 90.93%  Learning Rate: 1.0000000000000004e-08
+Epoch 44: Train Loss: 0.1129, Train Acc: 96.25%, Test Acc: 90.83%  Learning Rate: 1.0000000000000004e-08
+Epoch 45: Train Loss: 0.1109, Train Acc: 96.28%, Test Acc: 90.78%  Learning Rate: 1.0000000000000004e-08
+Epoch 46: Train Loss: 0.1126, Train Acc: 96.28%, Test Acc: 90.85%  Learning Rate: 1.0000000000000004e-08
+Epoch 47: Train Loss: 0.1094, Train Acc: 96.34%, Test Acc: 90.92%  Learning Rate: 1.0000000000000004e-08
+Epoch 48: Train Loss: 0.1104, Train Acc: 96.31%, Test Acc: 90.84%  Learning Rate: 1.0000000000000004e-08
+Epoch 49: Train Loss: 0.1118, Train Acc: 96.29%, Test Acc: 90.89%  Learning Rate: 1.0000000000000004e-08
+Epoch 50: Train Loss: 0.1104, Train Acc: 96.29%, Test Acc: 90.91%  Learning Rate: 1.0000000000000004e-08
+Training complete my boss
