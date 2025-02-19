@@ -1,0 +1,51 @@
+{
+  "os":  "Windows-11-10.0.22631-SP0",
+  "python":  "CPython 3.12.7",
+  "startedAt":  "2025-02-19T10:45:57.620517Z",
+  "args":  [
+    "--batch_size",
+    "64",
+    "--epochs",
+    "50",
+    "--lr",
+    "0.001",
+    "--use_scheduler"
+  ],
+  "program":  "C:\\Users\\leami\\efficient-deep-learning\\LAB\\LAB1\\lab1_lea.py",
+  "codePath":  "LAB\\LAB1\\lab1_lea.py",
+  "git":  {
+    "remote":  "https://github.com/xueyun0512/efficient-deep-learning.git",
+    "commit":  "2126dff2bbe743182df1791d09ddc039669121f9"
+  },
+  "email":  "lea.miqueu@gmail.com",
+  "root":  "C:\\Users\\leami\\efficient-deep-learning\\LAB\\LAB1",
+  "host":  "VICTUS_LeaM",
+  "executable":  "C:\\Users\\leami\\anaconda3\\python.exe",
+  "codePathLocal":  "lab1_lea.py",
+  "cpu_count":  12,
+  "cpu_count_logical":  16,
+  "gpu":  "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "511114735616",
+      "used":  "243288571904"
+    }
+  },
+  "memory":  {
+    "total":  "16802762752"
+  },
+  "cpu":  {
+    "count":  12,
+    "countLogical":  16
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "memoryTotal":  "6439305216",
+      "cudaCores":  2560,
+      "architecture":  "Ada"
+    }
+  ],
+  "cudaVersion":  "12.6"
+}

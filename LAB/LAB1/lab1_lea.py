@@ -27,43 +27,80 @@ def get_dataloaders(batch_size):
     testloader = DataLoader(testset, batch_size=batch_size, shuffle=False, num_workers=2)
     return trainloader, testloader
 
-def train(model, trainloader, criterion, optimizer, device, epoch):
-    model.train()
-    running_loss = 0.0
-    correct = 0
-    total = 0
-    for batch_idx, (inputs, targets) in enumerate(trainloader):
-        inputs, targets = inputs.to(device), targets.to(device)
-        optimizer.zero_grad()
-        outputs = model(inputs)
-        loss = criterion(outputs, targets)
-        loss.backward()
-        optimizer.step()
-        running_loss += loss.item()
-        _, predicted = outputs.max(1)
-        total += targets.size(0)
-        correct += predicted.eq(targets).sum().item()
-    acc = 100. * correct / total
-    wandb.log({"train_loss": running_loss / len(trainloader), "train_accuracy": acc, "epoch": epoch})
-    return running_loss / len(trainloader), acc
+def train_model_bis(model, trainloader, testloader, epochs, is_scheduler, is_mixup, optimizer, criterion, scheduler, device):
+    train_accuracy_list, test_accuracy_list = [], []
+    train_loss_list, test_loss_list = [], []
+    
+    for epoch in range(epochs):
+        model.train()
+        running_loss = 0.0
+        correct_train = 0
+        total_train = 0
 
-def test(model, testloader, criterion, device, epoch):
-    model.eval()
-    test_loss = 0
-    correct = 0
-    total = 0
-    with torch.no_grad():
-        for inputs, targets in testloader:
-            inputs, targets = inputs.to(device), targets.to(device)
-            outputs = model(inputs)
-            loss = criterion(outputs, targets)
-            test_loss += loss.item()
+        for images, labels in trainloader:
+            images, labels = images.to(device), labels.to(device)
+            optimizer.zero_grad()
+            outputs = model(images)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
+            running_loss += loss.item()
+
+            # Training accuracy
             _, predicted = outputs.max(1)
-            total += targets.size(0)
-            correct += predicted.eq(targets).sum().item()
-    acc = 100. * correct / total
-    wandb.log({"test_loss": test_loss / len(testloader), "test_accuracy": acc, "epoch": epoch})
-    return test_loss / len(testloader), acc
+            correct_train += predicted.eq(labels).sum().item()
+            total_train += labels.size(0)
+
+        train_accuracy = 100 * correct_train / total_train
+        train_accuracy_list.append(train_accuracy)
+        train_loss_list.append(running_loss / len(trainloader))
+
+        # Evaluate on test set
+        model.eval()
+        correct_test = 0
+        total_test = 0
+        test_loss = 0.0
+
+        with torch.no_grad():
+            for images, labels in testloader:
+                images, labels = images.to(device), labels.to(device)
+                outputs = model(images)
+                loss = criterion(outputs, labels)
+                test_loss += loss.item()
+
+                _, predicted = outputs.max(1)
+                correct_test += predicted.eq(labels).sum().item()
+                total_test += labels.size(0)
+
+        test_accuracy = 100 * (correct_test / total_test)
+        test_accuracy_list.append(test_accuracy)
+        test_loss_list.append(test_loss / len(testloader))
+
+        # if using a scheduler
+        current_lr = optimizer.param_groups[0]['lr']
+        if is_scheduler:
+            scheduler.step(test_loss / len(testloader))
+            if current_lr != optimizer.param_groups[0]['lr']:
+                print(f"LEARNING RATE UPDATE TO:{optimizer.param_groups[0]['lr']}")
+
+        print(f"Epoch {epoch+1}: "
+              f"Train Loss: {running_loss/len(trainloader):.4f}, "
+              f"Train Acc: {train_accuracy:.2f}%, "
+              f"Test Acc: {test_accuracy:.2f}% ",
+              f"Learning Rate: {optimizer.param_groups[0]['lr']}")
+        torch.save({
+            'epoch': epochs,
+            'model_state_dict': model.state_dict(),
+            'optimizer_state_dict': optimizer.state_dict(),
+            'scheduler_state_dict': scheduler.state_dict() if scheduler else None,
+        }, "checkpoint.pth")
+
+        print("Checkpoint sauvegardé sous 'checkpoint.pth' 🛠️")
+    
+    print("Training complete my boss")
+    torch.save(model.state_dict(), "final_model.pth")
+    print("Modèle sauvegardé sous 'final_model.pth' 🎉")
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -71,6 +108,7 @@ def main():
     parser.add_argument('--epochs', type=int, default=30)
     parser.add_argument('--lr', type=float, default=0.001)
     parser.add_argument('--use_scheduler', action='store_true')
+    parser.add_argument('--use_mixup', action='store_true')
     args = parser.parse_args()
     
     wandb.init(project="resnet-cifar10", config=args)
@@ -81,12 +119,7 @@ def main():
     optimizer = Adam(model.parameters(), lr=args.lr)
     scheduler = ReduceLROnPlateau(optimizer, 'min') if args.use_scheduler else None
     
-    for epoch in range(args.epochs):
-        train_loss, train_acc = train(model, trainloader, criterion, optimizer, device, epoch)
-        test_loss, test_acc = test(model, testloader, criterion, device, epoch)
-        if scheduler:
-            scheduler.step(test_loss)
-        print(f"Epoch {epoch+1}/{args.epochs}: Train Loss={train_loss:.4f}, Train Acc={train_acc:.2f}% | Test Loss={test_loss:.4f}, Test Acc={test_acc:.2f}%")
+    train_model_bis(model, trainloader, testloader, args.epochs, args.use_scheduler, args.use_mixup, optimizer, criterion, scheduler, device)
     
 if __name__ == "__main__":
     main()
