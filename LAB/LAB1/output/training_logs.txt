@@ -1,0 +1,3 @@
+Epoch 1: Train Loss: 1.4813, Train Acc: 45.35%, Test Acc: 16.69% Learning Rate: 0.001
+Epoch 2: Train Loss: 1.0689, Train Acc: 61.96%, Test Acc: 11.99% Learning Rate: 0.001
+Epoch 3: Train Loss: 0.8837, Train Acc: 69.20%, Test Acc: 20.72% Learning Rate: 0.001
