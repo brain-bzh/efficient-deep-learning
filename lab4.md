@@ -36,7 +36,7 @@ Where:
 - $q_a$: quantization of activations
 - $w$: number of weights
 - $f$: number of mult-adds (MACs) operations
-- $5.6\cdot10^6$ and $8.3\cdot10^8$ are the reference param and ops scores of the ResNet18 network in half precision.
+- $5.6\cdot10^6$ and $2.8\cdot10^8$ are the reference param and ops scores of the ResNet18 network in half precision.
 
 Prepare a presentation for session 5, detailing your methodology and explorations. You will have 7 minutes to present, followed by 3 minutes of questions.
 
