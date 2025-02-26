@@ -27,7 +27,7 @@ Part 2 - Combining all techniques on CIFAR10.
 --
 Now, it's your turn to combine everything we have seen so far to start performing some interesting comparisons using the datasets CIFAR10. The goal is to design and train a network that **achieves 90% accuracy on CIFAR10**, while having the **lowest possible score**.
 
-$$\text{score} =\underset{param}{\underbrace{\dfrac{[1-(p_s+p_u)]\dfrac{q_w}{32}w}{5.6\cdot10^6}}} + \underset{ops}{\underbrace{\dfrac{(1-p_s)\dfrac{\max(q_w,q_a)}{32}f}{8.3\cdot10^8}}} $$
+$$\text{score} =\underset{param}{\underbrace{\dfrac{[1-(p_s)]\dfrac{q_w}{32}w}{5.6\cdot10^6}}} + \underset{ops}{\underbrace{\dfrac{(1-(p_s+p_u)\dfrac{\max(q_w,q_a)}{32}f}{8.3\cdot10^8}}} $$
 
 Where:
 - $p_s$: structured pruning
