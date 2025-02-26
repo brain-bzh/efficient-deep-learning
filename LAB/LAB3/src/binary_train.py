@@ -11,8 +11,10 @@ from torch.utils.data.dataloader import DataLoader
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 import numpy as np
 import sys
-from binaryconnect import BC
+
 sys.path.append("/homes/x22weng/efficient-deep-learning-lea/LAB/LAB1/")
+sys.path.append("/homes/x22weng/efficient-deep-learning-lea/LAB/LAB3/")
+from binaryconnect import BC
 from resnet import ResNet18
 
 #############################################################################################################################################################
@@ -47,21 +49,21 @@ def binary_train(args):
     testloader = DataLoader(c10test,batch_size=args.batch_size)
 
     # Fetch the model
-    loaded_cpt = torch.load('/homes/x22weng/efficient-deep-learning-lea/LAB/LAB3/models/test.pth')
+    # loaded_cpt = torch.load('/homes/x22weng/efficient-deep-learning-lea/LAB/LAB3/models/test.pth')
     model = ResNet18()
-    model.load_state_dict(loaded_cpt['model_state_dict'])
+    # model.load_state_dict(loaded_cpt['model_state_dict'])
 
     # Get the binary model
     mymodelbc = BC(model)
     mymodelbc.model = mymodelbc.model.to(device)
 
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(model.parameters(), lr=args.learning_rate, weight_decay=args.weight_decay)
+    optimizer = optim.Adam( mymodelbc.model.parameters(), lr=args.learning_rate, weight_decay=args.weight_decay)
     scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=3, verbose=True)
 
     # Training loop
     for epoch in range(args.epochs):
-        mymodelbc.train()
+        mymodelbc.model.train()
         running_loss = 0.0
         correct_train = 0
         total_train = 0
@@ -72,13 +74,13 @@ def binary_train(args):
             mymodelbc.binarization()
 
             optimizer.zero_grad()
-            outputs = model(images)
+            outputs =  mymodelbc.model(images)
             loss = criterion(outputs, labels)
 
-            # 2️) **Restore full precision before backpropagation**
-            mymodelbc.restore()
+            # 2️) **Restore full precision after backpropagation**
             loss.backward()
             optimizer.step()
+            mymodelbc.restore()
 
             # 3️) **Clip weights after update**
             mymodelbc.clip()
@@ -96,7 +98,7 @@ def binary_train(args):
         print(f"TRAINING: Epoch [{epoch+1}/{args.epochs}], Loss: {train_loss:.4f}, Accuracy: {train_accuracy:.4f}, Learning rate: {optimizer.param_groups[0]['lr']}")
 
         # Evaluate on test set
-        model.eval()
+        mymodelbc.model.eval()
         correct_test = 0
         total_test = 0
         test_loss = 0.0
@@ -104,7 +106,7 @@ def binary_train(args):
         with torch.no_grad():
             for images, labels in testloader:
                 images, labels = images.to(device), labels.to(device)
-                outputs = model(images)
+                outputs =  mymodelbc.model(images)
                 loss = criterion(outputs, labels)
                 test_loss += loss.item()
 
@@ -136,7 +138,7 @@ def binary_train(args):
     wandb.finish()
     # Save model along with training hyperparameters
     checkpoint = {
-        "model_state_dict": model.state_dict(),
+        "model_state_dict":  mymodelbc.model.state_dict(),
         "optimizer_state_dict": optimizer.state_dict(),
         "epochs": args.epochs,
         "weight_decay": args.weight_decay,
@@ -153,14 +155,9 @@ if __name__ == "__main__":
     parser.add_argument("--batch_size", type=int, default=64, help="Batch size for training")
     parser.add_argument("--learning_rate", type=float, default=0.001, help="Learning rate")
     parser.add_argument("--data_path", type=str, default="/opt/img/effdl-cifar10/", help="Path to the dataset")
-    parser.add_argument("--save_path", type=str, default="models/cnn_model.pth", help="Path to save the model")
+    parser.add_argument("--save_path", type=str, default="models/ mymodelbc.pth", help="Path to save the model")
     
 
 
     args = parser.parse_args()
     binary_train(args)
-
-    ### QUESTIONS : 
-    # - Binarize before evaluating?
-    # - do we perform binary connect on the pretrained CIFAR from the github repo of the researchers or our trained lastly trained model?
-    # Is is a new training from scratch? If we use the previous model, how many sample to feed the model ?
