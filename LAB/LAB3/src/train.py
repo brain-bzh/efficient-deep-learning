@@ -15,7 +15,6 @@ import sys
 sys.path.append("/homes/x22weng/efficient-deep-learning-lea/LAB/LAB1/")
 from resnet import ResNet18
 
-
 #############################################################################################################################################################
 def train(args):
     # Initialize Weights & Biases
@@ -117,6 +116,7 @@ def train(args):
         
         
     print("Training complete my boss")
+    wandb.finish()
     # Save model along with training hyperparameters
     checkpoint = {
         "model_state_dict": model.state_dict(),

@@ -1,8 +1,10 @@
+
 ### See http://papers.nips.cc/paper/5647-binaryconnect-training-deep-neural-networks-with-b
 ### for a complete description of the algotihm 
 
 
 #  
+import torch
 import torch.nn as nn
 import numpy
 
@@ -12,7 +14,7 @@ class BC():
 
         # First we need to 
         # count the number of Conv2d and Linear
-        # This will be used next in order to build a list of all 
+        # This will be used next in order to build a list of all 
         # parameters of the model 
 
         count_targets = 0
@@ -26,12 +28,12 @@ class BC():
                 end_range, end_range-start_range+1)\
                         .astype('int').tolist()
 
-        # Now we can initialize the list of parameters
+        # Now we can initialize the list of parameters
 
         self.num_of_params = len(self.bin_range)
-        self.saved_params = [] # This will be used to save the full precision weights
+        self.saved_params = [] # This will be used to save the full precision weights
         
-        self.target_modules = [] # this will contain the list of modules to be modified
+        self.target_modules = [] # this will contain the list of modules to be modified
 
         self.model = model # this contains the model that will be trained and quantified
 
@@ -48,20 +50,21 @@ class BC():
 
     def save_params(self):
 
-        ### This loop goes through the list of target modules, and saves the corresponding weights into the list of saved_parameters
-
+        ### This loop goes through the list of target modules, and saves the corresponding weights into the list of saved_parameters
+        ## according to the notebook, clone () shoud be followed bu a .copy
         for index in range(self.num_of_params):
             self.saved_params[index].copy_(self.target_modules[index].data)
 
     def binarization(self):
 
-        ### To be completed
+        ### To be completed
 
-        ### (1) Save the current full precision parameters using the save_params method
-
-        
-        1
+        ### (1) Save the current full precision parameters using the save_params method
+        self.save_params()
         ### (2) Binarize the weights in the model, by iterating through the list of target modules and overwrite the values with their binary version
+        for index in range(self.num_of_params):
+            weight = self.target_modules[index].data
+            weight.copy_(torch.sign(weight))
         
     def restore(self):
 
@@ -74,13 +77,13 @@ class BC():
 
         ## To be completed 
         ## Clip all parameters to the range [-1,1] using Hard Tanh 
-        ## you can use the nn.Hardtanh function
-
-        1
+        ## you can use the nn.Hardtanh function
+        for index in range(self.num_of_params):
+            self.target_modules[index].data.copy_(torch.clamp(self.target_modules[index].data, -1, 1))
 
 
     def forward(self,x):
 
-        ### This function is used so that the model can be used while training
+        ### This function is used so that the model can be used while training
         out = self.model(x)
         return out
