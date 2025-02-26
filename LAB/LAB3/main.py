@@ -3,7 +3,7 @@ import os
 
 def main():    
     parser = argparse.ArgumentParser(description="Deep Learning Pipeline")
-    parser.add_argument("mode", choices=["train", "evaluate"], help="Mode to run the script")
+    parser.add_argument("mode", choices=["train", "evaluate","binary_train"], help="Mode to run the script")
     parser.add_argument("--data_path", type=str, default="/opt/img/effdl-cifar10/", help="Path to the dataset")
 
     # Training arguments
@@ -23,6 +23,9 @@ def main():
         os.system(f"python src/train.py --epochs {args.epochs} --weight_decay {args.weight_decay} --batch_size {args.batch_size} --learning_rate {args.learning_rate} --data_path {args.data_path} --save_path {args.save_path}")
     elif args.mode == "evaluate":
         os.system(f"python src/evaluate.py --model_path {args.model_path} --batch_size {args.batch_size} --data_path {args.data_path}")
+
+    elif args.mode == "binary_train":
+        os.system(f"python src/binary_train.py --epochs {args.epochs} --weight_decay {args.weight_decay} --batch_size {args.batch_size} --learning_rate {args.learning_rate} --data_path {args.data_path} --save_path {args.save_path}")
 
 if __name__ == "__main__":
     main()
