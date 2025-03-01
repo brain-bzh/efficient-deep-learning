@@ -3,7 +3,7 @@ import os
 
 def main():    
     parser = argparse.ArgumentParser(description="Deep Learning Pipeline")
-    parser.add_argument("mode", choices=["train", "evaluate","binary_train"], help="Mode to run the script")
+    parser.add_argument("mode", choices=["train", "evaluate","binary_train","pruning_train"], help="Mode to run the script")
     parser.add_argument("--data_path", type=str, default="/opt/img/effdl-cifar10/", help="Path to the dataset")
 
     # Training arguments
@@ -13,9 +13,11 @@ def main():
     parser.add_argument("--learning_rate", type=float, default=0.001, help="Learning rate")
     parser.add_argument("--save_path", type=str, default="models/cnn_model.pth", help="Path to save the model")
 
+    # Pruning 
+    parser.add_argument("--amount", type=float, default=0.2, help="amount for global unstructured pruning")
 
     # Evaluation arguments
-    parser.add_argument("--model_path", type=str, default="models/cnn_model.pth", help="Path to the trained model")
+    parser.add_argument("--model_path", type=str, default="models/test.pth", help="Path to the trained model")
 
     args = parser.parse_args()
 
@@ -26,6 +28,9 @@ def main():
 
     elif args.mode == "binary_train":
         os.system(f"python src/binary_train.py --epochs {args.epochs} --weight_decay {args.weight_decay} --batch_size {args.batch_size} --learning_rate {args.learning_rate} --data_path {args.data_path} --save_path {args.save_path}")
+
+    elif args.mode == "pruning_train":
+        os.system(f"python src/pruning_train.py --epochs {args.epochs} --weight_decay {args.weight_decay} --batch_size {args.batch_size} --learning_rate {args.learning_rate} --data_path {args.data_path} --amount {args.amount}")
 
 if __name__ == "__main__":
     main()
