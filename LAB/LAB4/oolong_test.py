@@ -4,14 +4,14 @@ import torch.nn as nn
 import torchvision
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
+import torch.nn.utils.prune as prune
 import sys
 import os
+import wandb
 
 # Ajouter le chemin du dossier parent pour importer resnet
 sys.path.append(os.path.abspath("../LAB1"))
 from resnet import ResNet18
-
-from utils_prune import apply_global_pruning, apply_structured_pruning, apply_thinet_pruning, remove_pruning
 
 def get_dataloaders(batch_size):
     rootdir = '/opt/img/effdl-cifar10/'
@@ -31,23 +31,6 @@ def get_dataloaders(batch_size):
     trainloader = DataLoader(trainset, batch_size=batch_size, shuffle=True, num_workers=2)
     testloader = DataLoader(testset, batch_size=batch_size, shuffle=False, num_workers=2)
     return trainloader, testloader
-
-def evaluate_model(model, testloader, device):
-    """Évalue le modèle sur le test set CIFAR10."""
-    model.eval()
-    correct = 0
-    total = 0
-    
-    with torch.no_grad():
-        for images, labels in testloader:
-            images, labels = images.to(device), labels.to(device)
-            outputs = model(images)
-            _, predicted = outputs.max(1)
-            correct += predicted.eq(labels).sum().item()
-            total += labels.size(0)
-    
-    accuracy = 100 * correct / total
-    print(f'Accuracy après pruning: {accuracy:.2f}%')
 
 def train_model(model, trainloader, testloader, device, epochs=10):
     criterion = nn.CrossEntropyLoss()
@@ -94,39 +77,59 @@ def train_model(model, trainloader, testloader, device, epochs=10):
         avg_test_loss = test_loss / len(testloader)
         
         print(f"Epoch {epoch+1}: Train Loss: {train_loss:.4f}, Train Acc: {train_accuracy:.2f}%, Test Loss: {avg_test_loss:.4f}, Test Acc: {test_accuracy:.2f}%")
+        wandb.log({"train_loss": train_loss, "train_accuracy": train_accuracy, "test_loss": avg_test_loss, "test_accuracy": test_accuracy})
+
+#L1 structured pruning then general pruning then tuning
+
+def apply_l1_structured_pruning(model, amount=0.2):
+    """Applies structured pruning to convolutional filters."""
+    for module in model.modules():
+        if isinstance(module, nn.Conv2d):
+            prune.ln_structured(module, name='weight', amount=amount, n=1, dim=0)
+
+def apply_global_pruning(model, amount=0.2):
+    """Applies global unstructured pruning based on L1 norm."""
+    parameters_to_prune = []
+    for module in model.modules():
+        if isinstance(module, (nn.Conv2d, nn.Linear)):
+            parameters_to_prune.append((module, 'weight'))
+    prune.global_unstructured(parameters_to_prune, pruning_method=prune.L1Unstructured, amount=amount)
 
 def main():
+    print("Starting pruning process...")
+    # parsers for the two prunings methods (structured and global)
     parser = argparse.ArgumentParser()
-    parser.add_argument('--batch_size', type=int, default=64)
-    parser.add_argument('--pruning_method', type=str, default='global', choices=['global', 'structured', 'thinet'])
-    parser.add_argument('--pruning_ratio', type=float, default=0.5)
+    parser.add_argument('--structured',type=float, default=0.2)
+    parser.add_argument('--glob',type=float, default=0.2)
+    parser.add_argument('--epochs',type=int, default=30)
+    parser.add_argument('--batch_size',type=int, default=64)
     args = parser.parse_args()
-    
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    wandb.init(project="resnet-pruning", config=vars(args))
+
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    print(f"Using {device} for training")
     trainloader, testloader = get_dataloaders(args.batch_size)
-    
+    print("Data loaded !")
+
     # Charger le modèle existant
     model = ResNet18().to(device)
-    model.load_state_dict(torch.load("../LAB1/test.pth", map_location=device))
+    checkpoint = torch.load("../LAB1/test.pth", map_location=device)
+    model.load_state_dict(checkpoint["model_state_dict"])
     print("Modèle chargé en half precision !")
-    
-    # Appliquer le pruning choisi
-    if args.pruning_method == 'global':
-        apply_global_pruning(model, amount=args.pruning_ratio)
-    elif args.pruning_method == 'structured':
-        apply_structured_pruning(model, amount=args.pruning_ratio)
-    elif args.pruning_method == 'thinet':
-        apply_thinet_pruning(model, amount=args.pruning_ratio)
-    
-    print(f"{args.pruning_method.capitalize()} pruning appliqué avec ratio {args.pruning_ratio}")
-    
-    # Évaluer le modèle après pruning
-    evaluate_model(model, testloader, device)
-    
-    # Phase d'entraînement après pruning
-    train_model(model, trainloader, testloader, device, epochs=10)
-    
-    
-    
-if __name__ == "__main__":
+
+    # Appliquer le structured pruning
+    apply_l1_structured_pruning(model, amount=args.structured)
+    # Appliquer le global pruning
+    apply_global_pruning(model, amount=args.glob)
+    # Train the model
+    train_model(model, trainloader, testloader, device, epochs=args.epochs)
+    # Save the model
+    model.half()
+    torch.save(model.state_dict(), 'pruned_model.pth')
+
+    wandb.save('pruned_model.pth')
+    wandb.finish()
+
+if __name__ == '__main__':
     main()

@@ -14,7 +14,7 @@ def apply_structured_pruning(model, amount=0.2):
     """Applies structured pruning to convolutional filters."""
     for module in model.modules():
         if isinstance(module, nn.Conv2d):
-            prune.ln_structured(module, name='weight', amount=amount, n=2, dim=0)
+            prune.ln_structured(module, name='weight', amount=amount, n=1, dim=0)
 
 def apply_thinet_pruning(model, amount=0.2):
     """ThiNet-style pruning based on feature map norms."""
