@@ -95,6 +95,7 @@ def apply_global_pruning(model, amount=0.2):
             parameters_to_prune.append((module, 'weight'))
     prune.global_unstructured(parameters_to_prune, pruning_method=prune.L1Unstructured, amount=amount)
 
+
 def main():
     print("Starting pruning process...")
     # parsers for the two prunings methods (structured and global)
