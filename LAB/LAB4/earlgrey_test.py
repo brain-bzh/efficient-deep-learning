@@ -38,6 +38,7 @@ def evaluate_model(model, testloader, device):
     correct = 0
     total = 0
     
+    
     with torch.no_grad():
         for images, labels in testloader:
             images, labels = images.to(device), labels.to(device)
