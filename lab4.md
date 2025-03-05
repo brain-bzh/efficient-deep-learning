@@ -27,7 +27,7 @@ Part 2 - Combining all techniques on CIFAR10.
 --
 Now, it's your turn to combine everything we have seen so far to start performing some interesting comparisons using the datasets CIFAR10. The goal is to design and train a network that **achieves 90% accuracy on CIFAR10**, while having the **lowest possible score**.
 
-$$\text{score} =\underset{param}{\underbrace{\dfrac{[1-(p_s+p_u)]\dfrac{q_w}{32}w}{5.6\cdot10^6}}} + \underset{ops}{\underbrace{\dfrac{(1-p_s)\dfrac{\max(q_w,q_a)}{32}f}{8.3\cdot10^8}}} $$
+$$\text{score} =\underset{param}{\underbrace{\dfrac{[1-(p_s+p_u)]\dfrac{q_w}{32}w}{5.6\cdot10^6}}} + \underset{ops}{\underbrace{\dfrac{(1-p_s)\dfrac{\max(q_w,q_a)}{32}f}{2.8\cdot10^8}}} $$
 
 Where:
 - $p_s$: structured pruning
@@ -35,8 +35,8 @@ Where:
 - $q_w$: quantization of weights
 - $q_a$: quantization of activations
 - $w$: number of weights
-- $f$: number of floating point operations
-- $5.6\cdot10^6$ and $8.3\cdot10^8$ are the reference param and ops scores of the ResNet18 network in half precision.
+- $f$: number of mult-adds (MACs) operations
+- $5.6\cdot10^6$ and $2.8\cdot10^8$ are the reference param and ops scores of the ResNet18 network in half precision.
 
 Prepare a presentation for session 5, detailing your methodology and explorations. You will have 7 minutes to present, followed by 3 minutes of questions.
 
