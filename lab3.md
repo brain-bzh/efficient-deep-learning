@@ -50,7 +50,7 @@ Part 1 - Quantization to half and integer precision
 --
 The goal of this part is to work with one of the models you obtained in Lab Session 1, reload the weights and quantize after training.
 
-While converting a model post-training to floating point half-precision is straightforward, converting to integer is more complex because all operators need to be adapted, and dynamic ranges in computations differ (see the [course](course2.pdf))
+While converting a model post-training to floating point half-precision is straightforward, converting to integer is more complex because all operators need to be adapted, and dynamic ranges in computations differ (see the [course](course3.pdf))
 
 PyTorch has recently introduced a set of tools for quantization to 8bit integer, using specific quantized tensor types, quantized version of operators, as well as utily functions to manage quantization. Please read the following post for a general explanation of [Pytorch quantization features](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/) for quantization.
 
