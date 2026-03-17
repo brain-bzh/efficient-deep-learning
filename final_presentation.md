@@ -6,5 +6,6 @@ Prepare a final presentation for session 8, detailing your methodology and explo
   - Detail your techniques
     - Architecture search (depth, width, factorization ...)
     - Compression techniques: data augmentation, pruning, quantization, ...
+    - Detail your strategy - what choices did you do and why?
   - Calculate the scores and performance of your various compressed architectures
   - Summarize your results on a plot with accuracy as a function of the Score (with the 90% limit).
